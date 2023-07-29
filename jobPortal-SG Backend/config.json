@@ -1,0 +1,6 @@
+{
+    "port": 8081,
+    "apiPrefix": "/api",
+    "mongoURI": "mongodb://0.0.0.0:27017/SG-jobPortal",
+    "secretOrKey": "secret"
+}
