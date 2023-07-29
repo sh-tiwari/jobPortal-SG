@@ -1,0 +1,76 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+#area-example-15 {
+    height: 200px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  #column-example-9 {
+    height: 200px;
+    max-width: 300px;
+    margin: 0 auto;
+    --labels-size: 3rem;
+  }
+  
+  #line-example-16 {
+    height: 200px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f6f6f6;
+  }
+  
+  #stock-chart-example-2 {
+    display: grid;
+    align-items: center;
+    margin-top: 20px;
+    justify-items: center;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 200px 50px 50px;
+    grid-template-areas: 
+      "data-1-axis  stocks       data-2-axis"
+      "data-1-axis  volume       data-2-axis"
+      "primary-axis primary-axis primary-axis";
+    background-color: #eee;
+    width: 650px;
+  }
+  #stock-chart-example-2 > table.area,
+  #stock-chart-example-2 > table.line {
+    grid-area: stocks;
+  }
+  #stock-chart-example-2 > table.column {
+    grid-area: volume;
+  }
+  #stock-chart-example-2 > .primary-axis {
+    grid-area: primary-axis;
+  }
+  #stock-chart-example-2 > .data-1-axis {
+    grid-area: data-1-axis;
+    writing-mode: tb-rl;
+    transform: rotateZ(180deg);
+  }
+  #stock-chart-example-2 > .data-2-axis {
+    grid-area: data-2-axis;
+    writing-mode: tb-rl;
+  }
+  /* Colors */
+  #stock-chart-example-2 > table.area {
+    --color: linear-gradient(#666, rgba(255, 255, 255, 0));
+  }
+  #stock-chart-example-2 > table.line {
+    --color: #fc1;
+  }
+  #stock-chart-example-2 > table.column tr:nth-child(even) {
+    --color: #e88;
+  }
+  #stock-chart-example-2 > table.column tr:nth-child(odd) {
+    --color: #8c8;
+  }
+  
+  
+  

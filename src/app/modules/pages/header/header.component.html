@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="home">SG-Job Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="form-inline my-2 my-lg-0"> 
+      <div class="row">
+        <div class="col-md-9">
+          <a class="btn btn-outline-success mr-2 my-sm-0" href="/recruiter" target="_blank">Recruiter</a>        </div>
+        <div class="col-md-2">
+          <div class="dropdown">
+            <button mat-icon-button matTooltip="More links" [matMenuTriggerFor]="userAccountMenu">
+              <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
+              <button mat-menu-item>
+                  <mat-icon>info</mat-icon><span>About</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>featured_play_list</mat-icon><span>Terms & Conditions</span>
+            </button>
+              <button mat-menu-item routerLink="#">
+                  <mat-icon>settings</mat-icon><span>Settings</span>
+              </button>
+              <button mat-menu-item routerLink="#">
+                  <mat-icon>help</mat-icon><span>Help</span>
+              </button>
+              
+          </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Custom CSS to show the dropdown on hover */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+</style>

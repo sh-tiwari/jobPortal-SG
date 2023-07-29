@@ -1,0 +1,41 @@
+<div class="card mb-3 dark-theme">
+  <!-- Updated HTML code with a close button -->
+<div class="card mb-3">
+  <div class="card-header">
+    <h5 class="card-title text-center pb-0 fs-3">Admin <br> Login </h5>
+    <button mat-icon-button class="close" (click)="onClick()" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="adminLogin" class="row g-3 needs-validation">
+      <div class="col-12">
+        <label for="username" class="form-label text-white" >Username</label>
+        <div class="input-group has-validation">
+          <!-- here input field for username -->
+         
+          <input type="text" formControlName="username"  class="form-control" id="username" required >
+        </div>
+      </div>
+
+      <div class="col-12">
+        <!-- here input field for password  -->
+        <label for="yourPassword" class="form-label text-white">Password</label>
+        <input type="password"  class="form-control" formControlName="password" id="yourPassword" required>
+      </div>
+
+      <div class="col-12">
+        <div class="form-check">
+          <!-- Remember me option   -->
+          <input class="form-check-input"  type="checkbox" name="remember" value="true" id="rememberMe">
+          <label class="form-check-label text-white"  for="rememberMe">Remember me</label>
+        </div>
+      </div>
+      <div class="col-12">
+        <!-- login button  -->
+        <button class="btn btn-primary w-100" (click)="onReactiveFormSubmit()">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

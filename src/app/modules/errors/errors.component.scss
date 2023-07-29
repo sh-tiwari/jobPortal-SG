@@ -1,0 +1,41 @@
+// these scss is used for error component
+@import './../../../assets/style/color.scss';
+@import './../../../assets/style/fonts.scss';
+
+.error-404 {
+  h1 {
+    font-size: 100px;
+    font-weight: 700;
+    color: #4154f1;
+    margin-bottom: 0;
+    line-height: 150px;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #012970;
+    margin-bottom: 30px;
+  }
+  .btn {
+    background: #51678f;
+    color: $light;
+    padding: 10px 30px;
+  }
+  .btn:hover {
+    background: #3e4f6f;
+  }
+}
+
+
+
+@media (min-width: 992px) {
+  .error-404 img {
+    max-width: 35%;
+  }
+}
+
+.img-fluid {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+}

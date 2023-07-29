@@ -1,0 +1,82 @@
+/* styles.scss or styles.css */
+.dark-theme {
+    background-color: #000; /* Black background color */
+    color: #fff; /* White text color */
+  }
+  
+
+
+
+
+ /* Add the following CSS to enhance the appearance of the login form */
+.card {
+  background-color: #222; /* Background color for the card */
+  color: #fff; /* Text color */
+  max-width: 400px; /* Maximum width for the card */
+  margin: auto; /* Center the card */
+  border-radius: 10px; /* Rounded corners for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the card */
+}
+
+.card-header {
+  background-color: #222;
+  border-bottom: 1px solid #444;
+  color: #fff;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative;
+  
+}
+.card-header h5{
+  line-height: 30px;
+}
+
+.close {
+  color: #fff;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  position: absolute; /* Add this to set an absolute position for the close button */
+  top: 5px; /* Adjust the top value to position the button vertically */
+  right: 10px; /* Adjust the right value to position the button horizontally */
+}
+
+.card-title {
+  color: #fff; /* Text color for the card title */
+}
+.card-body{
+  height: 320px;
+}
+
+.form-control {
+  background-color: #333; /* Background color for the input fields */
+  border: 1px solid #444; /* Border color for the input fields */
+  color: #fff; /* Text color for the input fields */
+}
+
+.form-control:focus {
+  background-color: #444; /* Background color when the input fields are focused */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Background color for the login button */
+  border-color: #007bff; /* Border color for the login button */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Background color on hover for the login button */
+  border-color: #0056b3; /* Border color on hover for the login button */
+}
+
+.form-check-input {
+  background-color: #333; /* Background color for the checkbox */
+  border-color: #444; /* Border color for the checkbox */
+}
+
+.form-check-input:checked {
+  background-color: #007bff; /* Background color for the checked checkbox */
+  border-color: #007bff; /* Border color for the checked checkbox */
+}

@@ -1,0 +1,57 @@
+<section class="background mt-5" >
+  <div class="login-box">
+    <!-- Login Form -->
+    <ng-container *ngIf="showLoginForm">
+      <p>Are You Looking For Job?</p>
+      <p class="comment">Please Login to find your Dream job!</p>
+      
+      <form [formGroup]="candidateLogin">
+        <!-- Login Form content -->
+        <div class="user-box">
+          <input required type="text" formControlName="email" />
+          <label>Email*</label>
+        </div>
+        <div class="user-box">
+          <input required type="password" name="" formControlName="password" />
+          <label>Password*</label>
+        </div>
+        <a (click)="candiLogin()">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Submit
+        </a>
+      </form>
+      <p>Don't have an account? <a class="blueclick" (click)="toggleForms()">Sign up!</a></p>
+    </ng-container>
+
+    <!-- Sign-up Form -->
+    <ng-container *ngIf="!showLoginForm" class="signup">
+      <p>Sign Up</p>
+      <form [formGroup]="candidateRegister">
+        <!-- Sign-up Form content -->
+        <div class="user-box">
+          <input required type="text" name="" formControlName="name"/>
+          <label>Full Name</label>
+        </div>
+        <div class="user-box">
+          <input required type="text" name="" formControlName="email"/>
+          <label>Email</label>
+        </div>
+        <div class="user-box">
+          <input required type="password" name="" formControlName="password"/>
+          <label>Password</label>
+        </div>
+        <a (click)="candiRegister()">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Submit
+        </a>
+      </form>
+      <p>Already have an account? <a class="blueclick" (click)="toggleForms()">Login</a></p>
+    </ng-container>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+$light:#fff ;
+$dark:#000;
+$light-blue: #012970;
+$grey: #444444;
+$body: #000000 ;     
+$btn-background: #199EB8;
+$orangered:orangered;
+$feature:#999;
+$nav:#4154f1;
+$header :#012970;
+$main:#263871;
+$dark-main:#1E293B;
+
+
+.font-red{
+color: $light !important;
+}
+.bg-red{
+  // margin-top: 70px !important;
+  background-color:  $dark !important;
+
+}
+.btn-light-blue{
+  background-color: #1289f91b !important;
+  color: #128af9 !important;
+}
+.btn-orange{
+  background-color: #ef4eb937 !important;
+  color: #ef4eb8 !important;
+}
+.btn-green{
+  background-color: #0dcd9331 !important;
+  color: #0dcd94 !important;
+}
+.btn-red{
+  background-color: rgba(255, 0, 0, 0.138) !important;
+  color: red !important;
+}
+
+
