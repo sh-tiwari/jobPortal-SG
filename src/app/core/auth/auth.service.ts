@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, switchMap, throwError } from 'rxjs';
+import { Observable, catchError, of, switchMap, throwError } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { AuthUtils } from './auth.utils';
 
@@ -69,6 +69,115 @@ export class AuthService {
           })
       );
   }
+
+
+  candSignIn(credentials: { email: string; password: string }): Observable<any> {
+    // Throw error, if the user is already logged in
+    if (this._authenticated) {
+        return throwError('User is already logged in.');
+    }
+
+    return this._httpClient.post(`${this.baseURL}/candidate/login`, credentials).pipe(
+        switchMap((response: any) => {
+
+            if (response.success) {
+                // Store the access token in the local storage
+                this.accessToken = response.token;
+
+                // Set the authenticated flag to true
+                this._authenticated = true;
+
+                
+
+                // Store the user on the user service
+                localStorage.setItem('currentUser', JSON.stringify(response.user));
+                localStorage.setItem('role', JSON.stringify(response.role ));
+
+              }
+
+            // Return a new observable with the response
+            return of(response);
+        })
+    );
+  }
+
+
+  candRegister(userData: {
+    name: string;
+    email: string;
+    password: string;
+  }): Observable<any> {
+    
+
+    // Register the candidate
+    return this._httpClient.post(`${this.baseURL}/candidate/register`, userData).pipe(
+      catchError((error) => {
+        // Handle registration error
+        console.log('Registration error:', error);
+        // You can show an error message using the ToastService or any other approach
+        // Example: this._toasterService.showToast('Registration Failed', '', 'error');
+
+        // Re-throw the error to be handled by the component
+        return throwError(error);
+      })
+    );
+  }
+
+
+  //recruiter login
+
+recSignIn(credentials: { email: string; password: string }): Observable<any> {
+  // Throw error, if the user is already logged in
+  if (this._authenticated) {
+      return throwError('User is already logged in.');
+  }
+
+  return this._httpClient.post(`${this.baseURL}/recruiter/login`, credentials).pipe(
+      switchMap((response: any) => {
+
+          if (response.success) {
+              // Store the access token in the local storage
+              this.accessToken = response.token;
+
+              // Set the authenticated flag to true
+              this._authenticated = true;
+
+              
+
+              // Store the user on the user service
+              localStorage.setItem('currentUser', JSON.stringify(response.user));
+              localStorage.setItem('role', JSON.stringify(response.role ));
+
+            }
+
+          // Return a new observable with the response
+          return of(response);
+      })
+  );
+}
+
+// recruiter register
+recRegister(userData: {
+  name: string;
+  email: string;
+  password: string;
+}): Observable<any> {
+  
+
+  // Register the candidate
+  return this._httpClient.post(`${this.baseURL}/recruiter/register`, userData).pipe(
+    catchError((error) => {
+      // Handle registration error
+      console.log('Registration error:', error);
+      // You can show an error message using the ToastService or any other approach
+      // Example: this._toasterService.showToast('Registration Failed', '', 'error');
+
+      // Re-throw the error to be handled by the component
+      return throwError(error);
+    })
+  );
+}
+
 
 
   getUserData(): { user: any, role: string } {

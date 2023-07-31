@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompaniesComponent } from './modules/companies/companies.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
 
 
 
@@ -23,8 +22,7 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
   declarations: [
     AppComponent,
     AdminHomeComponent,
-    CompaniesComponent,
-    DashboardComponent
+    CompaniesComponent
     
     
     

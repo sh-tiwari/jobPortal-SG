@@ -25,10 +25,10 @@ class PermissionsService {
                       let role:any =localStorage.getItem('role');
                       let userRole=JSON.parse(role);
                          // If the user is not authenticated...
-                         if ( !authenticated || userRole!="Admin" )
+                         if ( !authenticated  || userRole!="Candidate" )
                          {
                              // Redirect to the sign-in page
-                             this._router.navigate(['admin'], {queryParams: {redirectURL}});
+                             this._router.navigate(['home'], {queryParams: {redirectURL}});
 
                              // Prevent the access
                              return of(false);
@@ -41,7 +41,7 @@ class PermissionsService {
   }
 }
 
-export const AuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> | Promise<boolean> | boolean => {
+export const CandidateAuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> | Promise<boolean> | boolean => {
   return inject(PermissionsService).canActivate(next, state);
 }
 

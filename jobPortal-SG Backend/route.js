@@ -8,5 +8,5 @@ const Jobs= require('./routes/job.route');
 routes.use('/admin',Admin);
 routes.use('/jobs',Jobs),
 routes.use('/candidate',Candidate);
-routes.use('./recruiter',Recruiter)
+routes.use('/recruiter',Recruiter)
 module.exports= routes;

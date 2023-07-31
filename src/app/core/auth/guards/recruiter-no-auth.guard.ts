@@ -20,11 +20,12 @@ class NoPermissionsService {
                  .pipe(
                      switchMap((authenticated) => {
                         
+
                          // If the user is not authenticated...
                          if ( authenticated )
                          {
                              // Redirect to the sign-in page
-                             this._router.navigate(['admin-dashboard']);
+                             this._router.navigate(['recruiter-dashboard']);
 
                              // Prevent the access
                              return of(false);
@@ -36,7 +37,7 @@ class NoPermissionsService {
                  );
   }
 }
-export const NoAuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> | Promise<boolean> | boolean => {
+export const RecruiterNoAuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> | Promise<boolean> | boolean => {
   return inject(NoPermissionsService).canActivate(next, state);
 }
 

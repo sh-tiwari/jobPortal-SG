@@ -1,0 +1,38 @@
+
+<header class="header">
+    <div class="logo-container">
+      <a href="#" class="logo">JobPortalSG</a>
+    </div>
+    <nav class="menu">
+      <a href="#" class="login-btn">Candidate Login</a>
+
+      <a class="login-btn"[matMenuTriggerFor]="userAccountMenu"><i class="material-icons">menu</i></a>
+      <div class="dropdown">
+      
+        
+        <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
+          <button mat-menu-item routerLink="#">
+              <mat-icon>person</mat-icon><span>Settings</span>
+          </button>
+          <button mat-menu-item routerLink="#">
+            <mat-icon>dashboard</mat-icon><span>About Us</span>
+          </button>
+          <button mat-menu-item routerLink="#">
+            <mat-icon>helps</mat-icon><span>Help</span>
+          </button>
+          
+      </mat-menu>
+
+
+
+
+        
+      </div>
+    </nav>
+  </header>
+
+  <div class="hero-section">
+    <h1>WE LOVE RECRUITING</h1>
+    <p>Find smart and skilled candidate with JobPortalSG</p>
+    <!-- Add more content here if needed -->
+  </div>

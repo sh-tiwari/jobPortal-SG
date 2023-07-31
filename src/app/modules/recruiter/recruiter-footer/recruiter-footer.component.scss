@@ -1,0 +1,47 @@
+/* Your existing CSS styles */
+
+.footer {
+    background-color: #f0f0f0;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    max-width: 300px;
+  }
+  
+  .footer h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer p {
+    margin: 0;
+  }
+  
+  .footer-social-icons {
+    margin-bottom: 20px;
+  }
+  
+  .footer-social-icons a {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 24px;
+    color: #555;
+  }
+  
+  .footer-copyright {
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 30px;
+  }
+  
+  /* Add any additional styling for the social media icons and copyright mark */
+  

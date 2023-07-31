@@ -23,6 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -51,10 +52,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatChipsModule,
-    MatAutocompleteModule
+    AngularMaterialModule
   ]
   
 })

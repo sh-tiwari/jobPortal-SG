@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CandAuthService } from 'src/app/core/auth/cand-auth.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { ToastService } from 'src/app/shared/toast.service';
 
 
@@ -16,7 +16,7 @@ export class LandingPageComponent implements OnInit  {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _authService :CandAuthService,
+    private _authService :AuthService,
     private _activatedRoute:ActivatedRoute,
     private _router: Router,
     private _toasterService: ToastService
@@ -52,7 +52,7 @@ ngOnInit(): void {
     console.log(this.candidateLogin.value);
 
      // Sign in
-     this._authService.signIn(this.candidateLogin.value)
+     this._authService.candSignIn(this.candidateLogin.value)
      .subscribe(
        () => {
 
@@ -98,7 +98,7 @@ ngOnInit(): void {
     console.log(this.candidateRegister.value);
 
     // Register the candidate
-    this._authService.register(this.candidateRegister.value).subscribe(
+    this._authService.candRegister(this.candidateRegister.value).subscribe(
       () => {
         // Re-enable the form
         this.candidateRegister.enable();
