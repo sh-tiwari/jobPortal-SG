@@ -77,7 +77,7 @@ export class AuthService {
         return throwError('User is already logged in.');
     }
 
-    return this._httpClient.post(`${this.baseURL}/candidate/login`, credentials).pipe(
+    return this._httpClient.post(`${this.baseURL}/auth/login`, credentials).pipe(
         switchMap((response: any) => {
 
             if (response.success) {
@@ -110,7 +110,7 @@ export class AuthService {
     
 
     // Register the candidate
-    return this._httpClient.post(`${this.baseURL}/candidate/register`, userData).pipe(
+    return this._httpClient.post(`${this.baseURL}/auth/register`, userData).pipe(
       catchError((error) => {
         // Handle registration error
         console.log('Registration error:', error);

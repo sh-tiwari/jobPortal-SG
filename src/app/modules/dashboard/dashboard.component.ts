@@ -90,8 +90,11 @@ export class DashboardComponent {
     this.fetchAll();
   }
 
-  statusFilter(event: MatSelectChange) {
-    this.page.status = event.value;
+  statusFilter(event: MatSelectChange): void {
+    const selectedValue = event.value; 
+  
+    // Now you can use the selectedValue as needed
+    this.page.status = selectedValue;
     this.fetchAll();
   }
 

@@ -24,7 +24,7 @@ export class JobsComponent implements OnInit{
 
   jobsData: JobBasic[] | any;
 
-  jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary', 'action'];
+  jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary','status', 'action'];
   data: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(
@@ -61,7 +61,7 @@ export class JobsComponent implements OnInit{
       this.data.data = this.jobsData;
 
       // Mark for check
-      this._changeDetectorRef.markForCheck();
+      //this._changeDetectorRef.markForCheck();
     });
   };
 
@@ -79,12 +79,16 @@ export class JobsComponent implements OnInit{
   } */
 
   searchUser(event: any) {
+    
     this.page.filter = event.target.value;
     this.fetchAll();
   }
 
-  statusFilter(event: MatSelectChange) {
-    this.page.status = event.value;
+  statusFilter(event: MatSelectChange): void {
+    const selectedValue = event.value; 
+  
+    // Now you can use the selectedValue as needed
+    this.page.status = selectedValue;
     this.fetchAll();
   }
 

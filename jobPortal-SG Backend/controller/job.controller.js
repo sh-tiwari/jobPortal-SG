@@ -48,9 +48,27 @@ exports.create = async (req, res, next) => {
 };
 
 exports.fetchAll = async (req, res, next) => {
+    console.log("request",req.query);
+    let filter= {};
+    
+        filter['$and']=[];
+        if(req.query.status){
+			filter['$and'].push({
+				'status': {            
+				  '$eq': req.query.status,
+				},
+			});
+		} else if(req.query.status==''){
+            filter['$and'].push({
+                'status': {
+                    '$ne': req.query.status
+                }
+            });
+        }
+    
     try {
 
-        const jobs = await JobStructure.find().exec();
+        const jobs = await JobStructure.find(filter).exec();
 
       
         res.json({

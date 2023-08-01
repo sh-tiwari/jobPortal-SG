@@ -144,22 +144,16 @@
                 <h1 class="card-header-title">Available Jobs</h1>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <mat-form-field>
-                      <mat-label>Status</mat-label>
-                      <mat-select (selectionChange)="statusFilter($event)" [value]="''">
-                        <mat-option [value]="''">
-                          All
-                        </mat-option>
-                        <mat-option [value]="'open'">
-                          Open
-                        </mat-option>
-                        <mat-option [value]="'closed'">
-                          Closed
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+              <div class="col-md-4">
+                <mat-form-field>
+                  <mat-label>Status</mat-label>
+                  <mat-select (selectionChange)="statusFilter($event)" [value]="">
+                    <mat-option value="">All</mat-option>
+                    <mat-option value="open">Open</mat-option>
+                    <mat-option value="closed">Closed</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
             <table class="w-full  table  table-hover  col-lg-12" mat-table matSort [dataSource]="data" [trackBy]="trackByFn" >
         <ng-container matColumnDef="jobTitle">
