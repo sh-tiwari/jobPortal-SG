@@ -1,9 +1,9 @@
-const express = require("express");
+/* const express = require("express");
 const router = express.Router();
-const Candidate = require('../controller/auth.controller');
+const AuthController = require('../controller/auth.controller');
 
 router.route('/register')
-    .post(Candidate.register);
+    .post(AuthController.register);
 
 router.route('/login')
-    .post(Candidate.login);
+    .post(AuthController.login); */

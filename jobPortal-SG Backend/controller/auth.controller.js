@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+/* const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
 const CandidateStructure = require('../models/candidate');
@@ -104,4 +104,4 @@ exports.register = async (req, res, next) => {
       // Return a 500 status with a general error message
       return res.status(500).json({ error: "Internal server error" });
     }
-  };
+  }; */

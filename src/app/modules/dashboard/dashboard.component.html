@@ -99,7 +99,7 @@
             <button mat-menu-item routerLink="#">
                 <mat-icon>settings</mat-icon><span>Settings</span>
             </button>
-            <button mat-menu-item routerLink="#">
+            <button mat-menu-item (click)="logOut()">
                 <mat-icon>exit_to_app</mat-icon><span>Logout</span>
             </button>
             
@@ -117,8 +117,89 @@
   </nav>
   <!-- Navbar -->
 </div>
-<section class="job"></section>
-<section class="find_jobs"></section>
+<section class="find_jobs">
+  <form class="row domain-search bg-pblue">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="form-title">Find Your <strong>Dream Domain</strong></h2>
+                <p>Search for your dream domain now</p>
+            </div>
+            <div class="col-md-9">
+                <div class="input-group">
+                    <input type="search" class="form-control">
+                    <span class="input-group-addon"><input type="submit" value="Search" class="btn btn-primary"></span>
+                </div>
+                <p>.com <strong>$8.95</strong>.net <strong>$7.95</strong>.org <strong>$9.95</strong>.club <strong>$0.99</strong></p>
+            </div>
+        </div>
+    </div>
+</form>
+</section>
+<section class="job">
+  <div align-items-center >
+    <div>
+        <div class="card-body card">
+            <div class="card-header">
+                <h1 class="card-header-title">Available Jobs</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field>
+                      <mat-label>Status</mat-label>
+                      <mat-select (selectionChange)="statusFilter($event)" [value]="''">
+                        <mat-option [value]="''">
+                          All
+                        </mat-option>
+                        <mat-option [value]="'open'">
+                          Open
+                        </mat-option>
+                        <mat-option [value]="'closed'">
+                          Closed
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+            </div>
+            <table class="w-full  table  table-hover  col-lg-12" mat-table matSort [dataSource]="data" [trackBy]="trackByFn" >
+        <ng-container matColumnDef="jobTitle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </th>
+          <td mat-cell *matCellDef="let job"> <span class="pr-6 whitespace-nowrap">{{job.jobTitle}}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="companyName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+          <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.companyName}}</span> </td>
+        </ng-container>
+        <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
+            <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.salary}}</span></td>
+          </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let job">
+            <span class='icon'>
+
+              <button class="btn  btn-light-blue" [routerLink]="['edit', job._id]" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" title="Edit">
+                <i class="bi bi-pencil-fill"></i>
+              </button>
+
+              <button class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"
+                ><i class="bi bi-trash-fill"></i></button>
+            </span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="jobsListTableColumns"></tr>
+        <tr class="stock-row h-16" mat-row *matRowDef="let row; columns: jobsListTableColumns;"></tr>
+      </table>
+      <mat-paginator [pageSize]="5" [showFirstLastButtons]="true">
+      </mat-paginator>
+        </div>
+    </div>
+</div>
+</section>
 
 
 <script>

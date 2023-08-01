@@ -65,7 +65,7 @@ export class JobsComponent implements OnInit{
     });
   };
 
-  fetchAllJobs(): any {
+  /* fetchAllJobs(): any {
     this._jobsService.fetchAllJobs().subscribe((response: JobBasicDatas) => {
       // Get the users
       this.jobsData = response.data || [];
@@ -76,7 +76,7 @@ export class JobsComponent implements OnInit{
       // Mark for check
       this._changeDetectorRef.markForCheck();
     });
-  }
+  } */
 
   searchUser(event: any) {
     this.page.filter = event.target.value;

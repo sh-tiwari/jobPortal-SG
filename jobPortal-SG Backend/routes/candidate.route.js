@@ -6,7 +6,11 @@ router.route('/')
     .post( Candidate.create)
     .get(Candidate.fetchAll);
 
+router.route('/register')
+    .post(Candidate.register);
 
+router.route('/login')
+    .post(Candidate.login);
 
 router.route('/:id')
     .get (Candidate._populate, Candidate.fetch)
