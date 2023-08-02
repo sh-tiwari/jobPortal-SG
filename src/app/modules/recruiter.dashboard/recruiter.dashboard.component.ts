@@ -19,9 +19,11 @@ export class RecruiterDashboardComponent  implements OnInit{
   
   //dashboard parameter
   @ViewChild(MatPaginator) private _paginator: MatPaginator;
+
   page = {
-    filter: "",
-    status: ""
+    filter: "MyExpertise", // Set the default value to "MyExpertise"
+    status: "",
+    type: ""
     // sort: -1,
   };
 
@@ -29,57 +31,22 @@ export class RecruiterDashboardComponent  implements OnInit{
 
   jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary', 'action'];
   data: MatTableDataSource<any> = new MatTableDataSource();
+  
 
-  totalUsers: number = 0;
-
-  
-  //Sidebar toggle show hide function
-  status = false;
-  
-  addToggle()
-  {
-    this.status = !this.status;       
-  }
-  
   constructor(
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private _router:Router,
-    private _authService:AuthService,
-    private _toasterService: ToastService,
     private _jobsService: JobsService,
-    private _changeDetectorRef: ChangeDetectorRef
-    ){
-  //get request from web api
-    this.http.get('').subscribe(data => {
-      //this.data = data;
-    
-          }, error => console.error(error));
-  }
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _toasterService: ToastService,
+    private _authService: AuthService,
+    private _snackBar: MatSnackBar,
+    private _router: Router
+
+  ){}
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
+    this.fetchAll()
   }
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end'; // Add this line
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom'; // Add this line
-
-
-  showSnackBar(message: string) {
-    this._snackBar.open(message, 'Close', {
-      duration: 3000, // Set the duration for the snackbar to be displayed (in milliseconds)
-      horizontalPosition: this.horizontalPosition, // Use the horizontal position
-      verticalPosition: this.verticalPosition // Use the vertical position
-    });
-  }
-
-  logOut(){
-    this._authService.signOut().subscribe(response=>{
-      this.showSnackBar('Logout Successful');
-      this._router.navigate(['home']);
-    });
-    return true;
-  }
-
 
   fetchAll() {
     this._jobsService.fetchAll(this.page).subscribe((response: JobBasicData) => {
@@ -90,11 +57,11 @@ export class RecruiterDashboardComponent  implements OnInit{
       this.data.data = this.jobsData;
 
       // Mark for check
-      this._changeDetectorRef.markForCheck();
+      // this._changeDetectorRef.markForCheck();
     });
   };
 
- /*  fetchAllJobs(): any {
+  /* fetchAllJobs(): any {
     this._jobsService.fetchAllJobs().subscribe((response: JobBasicDatas) => {
       // Get the users
       this.jobsData = response.data || [];
@@ -108,7 +75,9 @@ export class RecruiterDashboardComponent  implements OnInit{
   } */
 
   searchUser(event: any) {
+    
     this.page.filter = event.target.value;
+    
     this.fetchAll();
   }
 
@@ -117,6 +86,14 @@ export class RecruiterDashboardComponent  implements OnInit{
   
     // Now you can use the selectedValue as needed
     this.page.status = selectedValue;
+    this.fetchAll();
+  }
+
+  typeFilter(event: MatSelectChange): void {
+    const selectedValue = event.value; 
+  
+    // Now you can use the selectedValue as needed
+    this.page.type = selectedValue;
     this.fetchAll();
   }
 
@@ -131,6 +108,25 @@ export class RecruiterDashboardComponent  implements OnInit{
 
   trackByFn(index: number, item: any): any {
     return item._id || index;
+  }
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end'; // Add this line
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom'; // Add this line
+  
+  
+  showSnackBar(message: string) {
+    this._snackBar.open(message, 'Close', {
+      duration: 3000, // Set the duration for the snackbar to be displayed (in milliseconds)
+      horizontalPosition: this.horizontalPosition, // Use the horizontal position
+      verticalPosition: this.verticalPosition // Use the vertical position
+    });
+  }
+  
+  logOut(){
+    this._authService.signOut().subscribe(response=>{
+      this.showSnackBar('Logout Successful');
+      this._router.navigate(['home']);
+    });
+    return true;
   }
 }
 
