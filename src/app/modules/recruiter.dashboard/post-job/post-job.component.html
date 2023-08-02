@@ -1,1 +1,44 @@
-<p>post-job works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 class="text-center mb-4">Post a Job</h2>
+      <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="jobTitle" placeholder="Job Title" required>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <input matInput formControlName="companyName" placeholder="Company Name" required>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Job Type</mat-label>
+          <mat-select formControlName="jobType" required>
+            <mat-option [value]="'Full-time'">Full time</mat-option>
+            <mat-option [value]="'Part-time'">Part time</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <input matInput formControlName="description" placeholder="Description">
+          </mat-form-field>
+        <mat-form-field class="w-100">
+          <input matInput formControlName="workingHours" type="number" placeholder="Work Hour">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <input matInput formControlName="experience" placeholder="Experience required">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <input matInput formControlName="salary" placeholder="Salary Range">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <input matInput formControlName="city" placeholder="City">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <input matInput formControlName="postcode" placeholder="Postcode">
+        </mat-form-field>
+        <div class="text-center">
+          <button mat-raised-button color="primary" type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

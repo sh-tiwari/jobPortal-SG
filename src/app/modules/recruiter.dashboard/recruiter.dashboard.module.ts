@@ -6,6 +6,7 @@ import { RecruiterDashboardRoute } from './recruiter.dashboard.routing';
 import { RecruiterDashboardComponent } from '../recruiter.dashboard/recruiter.dashboard.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostJobComponent } from './post-job/post-job.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { PostJobComponent } from './post-job/post-job.component';
     imports: [
       CommonModule,
       RouterModule.forChild(RecruiterDashboardRoute),
-      AngularMaterialModule
+      AngularMaterialModule,
+      ReactiveFormsModule
     
     ]
   })

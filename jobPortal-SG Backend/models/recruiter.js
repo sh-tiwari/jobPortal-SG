@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 
 const RecruiterSchema = new Schema({
-name:String,
+companyName:String,
 mobile:String,
-
+designation:String,
 email: {
     type: String,
     lowercase: true,

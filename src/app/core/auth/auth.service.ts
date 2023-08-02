@@ -158,7 +158,8 @@ recSignIn(credentials: { email: string; password: string }): Observable<any> {
 
 // recruiter register
 recRegister(userData: {
-  name: string;
+  companyName: string;
+  designation:string;
   email: string;
   password: string;
 }): Observable<any> {

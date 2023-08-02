@@ -66,7 +66,8 @@ exports.register = async (req, res, next) => {
   
       // If the recruiter does not exist, proceed with creating a new candidate
       const newRecruiter = new RecruiterStructure({
-        name: req.body.name,
+        companyName: req.body.companyName,
+        designation: req.body.designation,
         email: req.body.email,
         password: req.body.password
       });

@@ -5,12 +5,17 @@
 <div class="container">
     <form [formGroup]="recruiterSignup" class="form" >
       <div class="form-group">
-        <label for="email"><b>Enter Your Name</b></label>
-        <input type="text" placeholder="Enter Your Name" formControlName="name">
-        <mat-error *ngIf="recruiterSignup.get('name').hasError('required') && recruiterSignup.get('name').touched">Field is required</mat-error>
+        <label for="company name"><b>Company Name</b></label>
+        <input type="text" placeholder="e.g. Amazon or MyExpertise" formControlName="companyName">
+        <mat-error *ngIf="recruiterSignup.get('companyName').hasError('required') && recruiterSignup.get('name').touched">Field is required</mat-error>
+
+
+        <label for="designation"><b>Your Designation</b></label>
+        <input type="text" placeholder="e.g. Talent Acquisition Specialist" formControlName="designation">
+        <mat-error *ngIf="recruiterSignup.get('designation').hasError('required') && recruiterSignup.get('name').touched">Field is required</mat-error>
         
-        <label for="email"><b>Enter Email</b></label>
-        <input type="text" placeholder="Enter Email" formControlName="email">
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Your company email" formControlName="email">
         <mat-error *ngIf="recruiterSignup.get('email').hasError('required') && recruiterSignup.get('email').touched">Field is required</mat-error>
         <mat-error *ngIf="recruiterSignup.get('email')?.hasError('email') && recruiterSignup.get('email').touched">Enter a valid email</mat-error>
 
@@ -18,7 +23,7 @@
   
       <div class="form-group">
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" formControlName="password">
+        <input type="password" placeholder="Set a Password" formControlName="password">
         <mat-error *ngIf="recruiterSignup.get('password').hasError('required') && recruiterSignup.get('password').touched">Field is required</mat-error>
     </div>
   <div>
