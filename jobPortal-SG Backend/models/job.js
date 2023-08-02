@@ -19,23 +19,23 @@ const JobSchema = new Schema({
     latitude: Number,
     longitude: Number
   }, 
-  /* user: {
+  user: {
     _id: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     }
-  } */
+  },
   status: {
     type: String,
     default: 'open'
   },
-  /* applicants: [{
+  applicants: [{
     _id: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
     appliedDate: Date,
-  }]  */
+  }]
 }, {
   timestamps: true,
 });

@@ -18,7 +18,8 @@ export class JobsComponent implements OnInit{
   @ViewChild(MatSort) private _sort: MatSort;
   page = {
     filter: "",
-    status: ""
+    status: "",
+    type: ""
     // sort: -1,
   };
 
@@ -81,6 +82,7 @@ export class JobsComponent implements OnInit{
   searchUser(event: any) {
     
     this.page.filter = event.target.value;
+    
     this.fetchAll();
   }
 
@@ -89,6 +91,14 @@ export class JobsComponent implements OnInit{
   
     // Now you can use the selectedValue as needed
     this.page.status = selectedValue;
+    this.fetchAll();
+  }
+
+  typeFilter(event: MatSelectChange): void {
+    const selectedValue = event.value; 
+  
+    // Now you can use the selectedValue as needed
+    this.page.type = selectedValue;
     this.fetchAll();
   }
 

@@ -24,14 +24,19 @@ class PermissionsService {
                      switchMap((authenticated) => {
                       let role:any =localStorage.getItem('role');
                       let userRole=JSON.parse(role);
+                      console.log(userRole)
                          // If the user is not authenticated...
-                         if ( !authenticated  || userRole!="Candidate" )
+                         if ( !authenticated )
                          {
                              // Redirect to the sign-in page
                              this._router.navigate(['home'], {queryParams: {redirectURL}});
 
                              // Prevent the access
                              return of(false);
+                         }
+                         if (userRole!='Candidate'){
+                          this._router.navigate(['404-not-found']);
+                          return of(false);
                          }
 
                          // Allow the access

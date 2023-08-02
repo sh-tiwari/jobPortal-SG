@@ -64,7 +64,74 @@ exports.fetchAll = async (req, res, next) => {
                     '$ne': req.query.status
                 }
             });
+        }else {
+            filter['$and'].push({
+                'status': {
+                    '$eq': "open"
+                }
+            });
         }
+
+        if(req.query.type){
+			filter['$and'].push({
+				'type': {            
+				  '$eq': req.query.type,
+				},
+			});
+		} else if(req.query.type==''){
+            filter['$and'].push({
+                'type': {
+                    '$ne': req.query.type
+                }
+            });
+        }else {
+            filter['$and'].push({
+                'type': {
+                    '$eq': ""
+                }
+            });
+        }
+
+        if (req.query.filter) {
+			filter['$or'] = [];
+			filter['$or'].push({
+				'jobTitle': {
+					'$regex': req.query.filter,
+					'$options': 'i',
+				},
+			});
+			filter['$or'].push({
+				'location': {
+					'$regex': req.query.filter,
+					'$options': 'i',
+				},
+			});
+			filter['$or'].push({
+				'city': {
+					'$regex': req.query.filter,
+					'$options': 'i',
+				},
+			});
+			filter['$or'].push({
+				'jobType': {
+					'$regex': req.query.filter,
+					'$options': 'i',
+				},
+			});
+			filter['$or'].push({
+				'salary': {
+					'$regex': req.query.filter,
+					'$options': 'i',
+				},
+			});
+			filter['$or'].push({
+				'companyName': {
+					'$regex': req.query.filter,
+					'$options': 'i',
+				},
+			});
+
+		}
     
     try {
 

@@ -7,16 +7,26 @@
             <div class="row">
                 <div class="col-md-5 search-bar">
                     <mat-form-field class="search-form d-flex align-items-center">
-                        <input matInput [autocomplete]="'off'" [placeholder]="'Search job or company'" (keyup)="searchUser($event)" >
+                        <input class="search-input" matInput [autocomplete]="'off'" [placeholder]="'Search job or company'" (keyup)="searchUser($event)" >
                     </mat-form-field>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <mat-form-field>
                     <mat-label>Status</mat-label>
                     <mat-select (selectionChange)="statusFilter($event)" [value]="">
                       <mat-option value="">All</mat-option>
                       <mat-option value="open">Open</mat-option>
                       <mat-option value="closed">Closed</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field>
+                    <mat-label>Job Type</mat-label>
+                    <mat-select (selectionChange)="typeFilter($event)" [value]="">
+                      <mat-option value="">All</mat-option>
+                      <mat-option value="part-time">Part-Time</mat-option>
+                      <mat-option value="full-time">Full-Time</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>

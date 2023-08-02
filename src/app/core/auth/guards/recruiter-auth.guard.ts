@@ -25,13 +25,17 @@ class PermissionsService {
                       let role:any =localStorage.getItem('role');
                       let userRole=JSON.parse(role);
                          // If the user is not authenticated...
-                         if ( !authenticated || userRole!="Recruiter" )
+                         if ( !authenticated )
                          {
                              // Redirect to the sign-in page
                              this._router.navigate(['recruiter'], {queryParams: {redirectURL}});
 
                              // Prevent the access
                              return of(false);
+                         }
+                         if (userRole!='Recruiter'){
+                          this._router.navigate(['404-not-found']);
+                          return of(false);
                          }
 
                          // Allow the access
