@@ -22,7 +22,8 @@ import { CompaniesComponent } from './modules/companies/companies.component';
   declarations: [
     AppComponent,
     AdminHomeComponent,
-    CompaniesComponent
+    CompaniesComponent,
+
     
     
     

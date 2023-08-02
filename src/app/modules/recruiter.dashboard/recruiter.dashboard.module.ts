@@ -5,12 +5,13 @@ import { RecruiterDashboardRoute } from './recruiter.dashboard.routing';
 
 import { RecruiterDashboardComponent } from '../recruiter.dashboard/recruiter.dashboard.component';
 import { AngularMaterialModule } from './angular-material.module';
+import { PostJobComponent } from './post-job/post-job.component';
 
 @NgModule({
     declarations: [
    
-     RecruiterDashboardComponent,
-    
+    RecruiterDashboardComponent,
+    PostJobComponent
      
      
     ],
