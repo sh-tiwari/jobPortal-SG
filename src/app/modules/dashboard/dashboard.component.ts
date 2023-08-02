@@ -28,7 +28,7 @@ export class DashboardComponent {
 
   jobsData: JobBasic[] | any;
 
-  jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary', 'action'];
+  jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary','city', 'action'];
   data: MatTableDataSource<any> = new MatTableDataSource();
   
 

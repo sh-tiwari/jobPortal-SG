@@ -29,7 +29,7 @@ export class RecruiterDashboardComponent  implements OnInit{
 
   jobsData: JobBasic[] | any;
 
-  jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary', 'action'];
+  jobsListTableColumns: string[] = [ 'jobTitle','salary','status', 'action'];
   data: MatTableDataSource<any> = new MatTableDataSource();
   
 
