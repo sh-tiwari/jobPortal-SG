@@ -13,5 +13,6 @@ router.route('/:id')
     .put( Job._populate,Job.update)
     .delete( Job._populate, Job.delete);
 
+router.post('/:id/apply', Job.apply);
 
 module.exports = router;

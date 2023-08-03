@@ -63,12 +63,14 @@ export class JobsService {
     return this._httpClient.put<JobBasic[]>(`${this.baseURL}/${id}`, userData);
   }
 
-  /**
-   * Job Applicants
-   */
-  /* jobApplicants(id: string): Observable<UsersBasicData> {
-    return this._httpClient.get<UsersBasicData>(`${this.baseURL}/job-applicants/${id}`);
-  } */
+
+  applyForJob(jobId: string, candidateId: string): Observable<any> {
+    return this._httpClient.post<any>(`${this.baseURL}/${jobId}/apply`, { candidateId });
+  }
+  
+  
 }
+
+
 export { JobBasicDatas };
 

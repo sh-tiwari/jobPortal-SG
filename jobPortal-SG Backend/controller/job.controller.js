@@ -1,4 +1,5 @@
 const JobStructure = require('../models/job');
+const CandidateStructure = require('../models/candidate');
 exports._populate = async (req, res, next) => {
     if (req.params.id) {
         const {
@@ -182,3 +183,78 @@ exports.delete = async (req, res, next) => {
         next(err);
     }
 };
+
+/* exports.apply = async (req, res) => {
+    const { id } = req.params; // Get the job ID from the URL parameter
+    const { candidateId } = req.body; // Get the candidate ID from the request body
+
+    try {
+      // Find the job by ID
+      const job = await JobStructure.findById(id);
+
+      // Check if the job exists
+      if (!job) {
+        return res.status(404).json({ error: 'Job not found' });
+      }
+
+      // Check if the candidate has already applied for the job
+      if (job.applicants.some(applicant => applicant._id.toString() === candidateId)) {
+        return res.status(400).json({ error: 'Candidate has already applied for this job' });
+      }
+
+      // Add the candidate ID to the applicants array along with the applied date
+      job.applicants.push({ _id: candidateId, appliedDate: new Date() });
+
+      // Save the updated job document
+      await job.save();
+
+      return res.json({ message: 'Job application successful' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+ */
+
+exports.apply = async (req, res) => {
+    const { id } = req.params; // Get the job ID from the URL parameter
+    const { candidateId } = req.body; // Get the candidate ID from the request body
+
+    try {
+      // Find the job by ID
+      const job = await JobStructure.findById(id);
+
+      // Check if the job exists
+      if (!job) {
+        return res.status(404).json({ error: 'Job not found' });
+      }
+
+      // Check if the candidate has already applied for the job
+      if (job.applicants.some(applicant => applicant._id.toString() === candidateId)) {
+        return res.status(400).json({ error: 'Candidate has already applied for this job' });
+      }
+
+      // Add the candidate ID to the applicants array along with the applied date
+      job.applicants.push({ _id: candidateId, appliedDate: new Date() });
+
+      // Save the updated job document
+      await job.save();
+
+      // Now update the appliedJobs array in the Candidate model
+      const candidate = await CandidateStructure.findById(candidateId);
+      if (candidate) {
+        if (candidate.appliedJobs.some(appliedJobs => appliedJobs._id.toString() === id)){
+            return res.status(400).json({ error: 'This job already exists in Applied Job Array of Candidate' });
+            
+        }
+
+        candidate.appliedJobs.push({ _id: id, appliedDate: new Date() });
+        await candidate.save();
+      }
+
+      return res.json({ message: 'Job applied successfully' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  };
