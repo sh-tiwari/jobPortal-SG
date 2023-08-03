@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CompaniesComponent } from './modules/companies/companies.component';
 import { AuthGuard } from './core/auth/guards/auth.guard';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { NoAuthGuard } from './core/auth/guards/no-auth.guard';
@@ -58,13 +57,12 @@ const routes: Routes = [
   {
     path: 'companies',
     //canActivate: [AuthGuard],
-    component: CompaniesComponent,
     /* data: {
       role: ['user', 'admin']
-    },
+    },*/
     children: [
-      { path: '', loadChildren: () => import('./modules/comapny/company.module').then(m => m.CompanyModule)}
-    ] */
+      { path: '', loadChildren: () => import('./modules/companies/companies.module').then(m => m.CompaniesModule)}
+    ] 
   },
 
   {

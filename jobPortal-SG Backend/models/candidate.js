@@ -33,6 +33,13 @@ mobile:String,
     city:String,
     postCode:String,
     country: String,
+    appliedJobs: [{
+      _id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Job'
+      },
+      appliedDate: Date,
+    }],
    
   status: {
     type: String,

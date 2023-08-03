@@ -8,10 +8,10 @@ router.route('/')
     .post( Job.create)
     .get(Job.fetchAll);
 
-/* router.route('/:id')
-    .get (Job._populate, Job.fetch)
+router.route('/:id')
+    //.get (Job._populate, Job.fetch)
     .put( Job._populate,Job.update)
-     .delete( Job._populate, Job.delete); */
+    .delete( Job._populate, Job.delete);
 
 
 module.exports = router;

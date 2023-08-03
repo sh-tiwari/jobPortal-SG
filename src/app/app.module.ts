@@ -13,7 +13,6 @@ import { AuthService } from './core/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CompaniesComponent } from './modules/companies/companies.component';
 
 
 
@@ -21,8 +20,7 @@ import { CompaniesComponent } from './modules/companies/companies.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminHomeComponent,
-    CompaniesComponent,
+    AdminHomeComponent
 
     
     

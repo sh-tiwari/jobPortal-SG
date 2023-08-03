@@ -1,5 +1,5 @@
 const JobStructure = require('../models/job');
-/* exports._populate = async (req, res, next) => {
+exports._populate = async (req, res, next) => {
     if (req.params.id) {
         const {
             id,
@@ -23,7 +23,7 @@ const JobStructure = require('../models/job');
         next();
     }
 }
- */
+
 exports.create = async (req, res, next) => {
     const filter = req.body;
     console.log(filter);
@@ -145,6 +145,40 @@ exports.fetchAll = async (req, res, next) => {
 
     } catch (err) {
         console.log(err);
+        next(err);
+    }
+};
+
+
+exports.update = async (req, res, next) => {
+
+    let job = req.job;
+    let updatedJob = Object.assign(jobob, req.body);    
+
+    try{
+        const savedUser = await updatedJob.save();
+        res.status(200).json({
+            isSuccess:true,
+            job:updatedJob
+        })
+    }catch(err){
+        next(err);
+    }
+    
+    
+};
+
+
+
+exports.delete = async (req, res, next) => {
+    if (!req.job) {
+        return res.sendStatus(403)
+    }
+    try {
+        const response = await JobStructure.deleteOne(req.user);
+		res.status(200).json({isSuccess:true,response});
+        
+    } catch (err) {
         next(err);
     }
 };

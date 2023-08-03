@@ -28,7 +28,8 @@ password: String,
   status: {
     type: String,
     default: 'active'
-  },  
+  },
+postedJobs:[]  
 },
 {
   timestamps:true,

@@ -3,7 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { CompaniesBasicData, CompanyBasic } from 'src/app/core/models/campany.model';
 import { JobBasic, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
+import { CompanyBasicService } from 'src/app/core/services/company.service';
 import { JobsService } from 'src/app/core/services/job.service';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -15,26 +17,30 @@ import { ToastService } from 'src/app/shared/toast.service';
 export class CompaniesComponent implements OnInit{
   @ViewChild(MatPaginator) private _paginator: MatPaginator;
   @ViewChild(MatSort) private _sort: MatSort;
+  
+  companyBasic!: CompanyBasic[] | any;
+  /**
+   * here columns of table are declared
+  */
   page = {
     filter: "",
-    status: ""
+    type: "company",
     // sort: -1,
   };
 
-  jobsData: JobBasic[] | any;
+  data: MatTableDataSource<CompanyBasic> = new MatTableDataSource<CompanyBasic>();
 
-  jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary', 'action'];
-  data: MatTableDataSource<any> = new MatTableDataSource();
-
+  // Define the column names here
+  companyListTableColumns: string[] = ['companyTitle', 'mobile', 'email', 'location', 'isBlocked', 'action'];
+  
   constructor(
-    private _jobsService: JobsService,
+    private _userBasicService: CompanyBasicService,
     private _changeDetectorRef: ChangeDetectorRef,
     private _toasterService: ToastService
-
-  ){}
+  ) { }
 
   ngOnInit(): void {
-    this.fetchAll()
+    this.fetchAll();
   }
 
   ngAfterViewInit() {
@@ -51,51 +57,56 @@ export class CompaniesComponent implements OnInit{
     this._changeDetectorRef.markForCheck();
   }
 
+  ngOnDestroy(): void { }
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
+
+
+  /**
+   * @fetchall this function is used to fetch all data
+  */
   fetchAll() {
-    this._jobsService.fetchAll(this.page).subscribe((response: JobBasicData) => {
+    this._userBasicService.fetchAll(this.page).subscribe((response: CompaniesBasicData) => {
       // Get the users
-      this.jobsData = response.data || [];
+      this.companyBasic = response.data || [];
 
       // Assign it to data of table
-      this.data.data = this.jobsData;
+      this.data.data = this.companyBasic;
 
       // Mark for check
       this._changeDetectorRef.markForCheck();
     });
   };
 
-  fetchAllJobs(): any {
-    this._jobsService.fetchAllJobs().subscribe((response: JobBasicDatas) => {
-      // Get the users
-      this.jobsData = response.data || [];
-
-      // Assign it to data of table
-      this.data.data = this.jobsData;
-
-      // Mark for check
-      this._changeDetectorRef.markForCheck();
-    });
-  }
-
-  searchUser(event: any) {
+  /**
+   * Search filter for user
+   * @param event
+  */
+  searchCompany(event: any) {
     this.page.filter = event.target.value;
     this.fetchAll();
   }
 
-  statusFilter(event: MatSelectChange) {
-    this.page.status = event.value;
-    this.fetchAll();
-  }
-
+  /**
+   * @deleteFn function is used for delete data
+  */
   deleteFn(id: string): void {
     if (confirm("Are you sure to delete ?")) {
-      this._jobsService.delete(id).subscribe(response => {
+      this._userBasicService.delete(id).subscribe(response => {
         this._toasterService.showToast('Deleted Successfully', '', 'success');
         this.fetchAll();
       });
     }
   };
 
+  /**
+   * Track by function for ngFor loops
+   *
+   * @param index
+   * @param item
+   */
   trackByFn(index: number, item: any): any {
     return item._id || index;
   }

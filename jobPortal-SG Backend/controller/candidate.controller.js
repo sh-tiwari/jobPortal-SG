@@ -52,7 +52,7 @@ exports.create = async (req, res, next) => {
 
 
 
-exports.register = async (req, res, next) => {
+/* exports.register = async (req, res, next) => {
   try {
     // Check if the candidate with the given email already exists
     const existingCandidate = await CandidateStructure.findOne({ email: req.body.email }).exec();
@@ -151,7 +151,7 @@ exports.login = async (req, res, next) => {
     // Return a 500 status with a general error message
     return res.status(500).json({ error: "Internal server error" });
   }
-};
+}; */
 
 
 

@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col-md-5 search-bar">
                     <mat-form-field class="search-form d-flex align-items-center">
-                        <input matInput [autocomplete]="'off'" [placeholder]="'Search job or company'" (keyup)="searchUser($event)" >
+                        <input matInput [autocomplete]="'off'" [placeholder]="'Search company or company'" (keyup)="searchCompany($event)" >
                     </mat-form-field>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <mat-form-field>
                       <mat-label>Status</mat-label>
                       <mat-select (selectionChange)="statusFilter($event)" [value]="''">
@@ -25,43 +25,54 @@
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
-                  </div>
+                  </div> -->
             </div>
             <table class="w-full  table  table-hover  col-lg-12" mat-table matSort [dataSource]="data" [trackBy]="trackByFn" >
-        <ng-container matColumnDef="jobTitle">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </th>
-          <td mat-cell *matCellDef="let job"> <span class="pr-6 whitespace-nowrap">{{job.jobTitle}}</span>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="companyName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
-          <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.companyName}}</span> </td>
-        </ng-container>
-        <ng-container matColumnDef="salary">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
-            <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.salary}}</span></td>
-          </ng-container>
+              <ng-container matColumnDef="companyTitle">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Company Name</th>
+                <td mat-cell *matCellDef="let company">
+                  <span class="pr-6 whitespace-nowrap">{{company.companyName}}</span>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="mobile">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+                <td mat-cell *matCellDef="let company"><span class="pr-6 whitespace-nowrap">{{company.mobile}}</span> </td>
+              </ng-container>
+              <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                  <td mat-cell *matCellDef="let company"><span class="pr-6 whitespace-nowrap">{{company.email}}</span></td>
+                </ng-container>
+                <ng-container matColumnDef="location">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+                  <td mat-cell *matCellDef="let company"><span class="pr-6 whitespace-nowrap">{{company.city}}</span></td>
+                </ng-container>
+                <ng-container matColumnDef="isBlocked">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                  <td mat-cell *matCellDef="let company"><span class="pr-6 whitespace-nowrap">{{company.status}}</span> </td>
+                </ng-container>
+      
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                <td mat-cell *matCellDef="let company">
+                  <span class='icon'>
+      
+                    <button class="btn  btn-light-blue" mat-raised-button color="primary" [routerLink]="['edit', company._id]" data-bs-toggle="tooltip"
+                      data-bs-placement="bottom" title="Edit">
+                      more
+                    </button>
+      
+                    <button class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete" (click)="deleteFn(company._id)"
+                      ><mat-icon>delete</mat-icon></button>
+                  </span>
+                </td>
+              </ng-container>
+              <!-- Header row -->
+              <tr tr mat-header-row *matHeaderRowDef="companyListTableColumns"></tr>
 
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-          <td mat-cell *matCellDef="let job">
-            <span class='icon'>
-
-              <button class="btn  btn-light-blue" [routerLink]="['edit', job._id]" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" title="Edit">
-                <i class="bi bi-pencil-fill"></i>
-              </button>
-
-              <button class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"
-                ><i class="bi bi-trash-fill"></i></button>
-            </span>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="jobsListTableColumns"></tr>
-        <tr class="stock-row h-16" mat-row *matRowDef="let row; columns: jobsListTableColumns;"></tr>
-      </table>
-      <mat-paginator [pageSize]="5" [showFirstLastButtons]="true">
-      </mat-paginator>
+              <!-- Data rows -->
+              <tr class="stock-row h-16" mat-row *matRowDef="let row; columns: companyListTableColumns;"></tr>
+            </table>
+            <mat-paginator [pageSize]="5" [showFirstLastButtons]="true"></mat-paginator>
         </div>
     </div>
 </div>

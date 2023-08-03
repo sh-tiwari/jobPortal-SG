@@ -132,7 +132,7 @@ recSignIn(credentials: { email: string; password: string }): Observable<any> {
       return throwError('User is already logged in.');
   }
 
-  return this._httpClient.post(`${this.baseURL}/recruiter/login`, credentials).pipe(
+  return this._httpClient.post(`${this.baseURL}/auth/recruiter-login`, credentials).pipe(
       switchMap((response: any) => {
 
           if (response.success) {
@@ -166,7 +166,7 @@ recRegister(userData: {
   
 
   // Register the candidate
-  return this._httpClient.post(`${this.baseURL}/recruiter/register`, userData).pipe(
+  return this._httpClient.post(`${this.baseURL}/auth/recruiter-register`, userData).pipe(
     catchError((error) => {
       // Handle registration error
       console.log('Registration error:', error);

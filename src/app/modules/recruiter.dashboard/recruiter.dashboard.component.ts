@@ -121,13 +121,16 @@ export class RecruiterDashboardComponent  implements OnInit{
     });
   }
   
-  logOut(){
-    this._authService.signOut().subscribe(response=>{
-      this.showSnackBar('Logout Successful');
-      this._router.navigate(['home']);
-    });
-    return true;
+  logOut() {
+    const confirmation = window.confirm("Do you want to end this session?");
+    if (confirmation) {
+      this._authService.signOut().subscribe(response => {
+        this.showSnackBar('Logout Successful');
+        this._router.navigate(['home']);
+      });
+    }
   }
+  
 }
 
 
