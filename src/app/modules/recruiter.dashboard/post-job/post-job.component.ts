@@ -11,6 +11,7 @@ import { JobsService } from 'src/app/core/services/job.service';
 })
 export class PostJobComponent implements OnInit {
   jobForm:FormGroup;
+  recruiterId: string;
 
   constructor(
     private _formBuilder : FormBuilder,
@@ -31,7 +32,10 @@ export class PostJobComponent implements OnInit {
       salary:['',Validators.required],
       city:[''],
       postcode:['']
-    })
+    });
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.recruiterId = currentUser._id;
+    console.log(this.recruiterId);
   }
 
   onSubmit(){
@@ -41,7 +45,7 @@ export class PostJobComponent implements OnInit {
     this.jobForm.disable();
     console.log(this.jobForm.value);
 
-    this._jobService.create(this.jobForm.value).subscribe(
+    this._jobService.create(this.recruiterId,this.jobForm.value).subscribe(
       ()=>{
         this.jobForm.enable();
         this.jobForm.reset();

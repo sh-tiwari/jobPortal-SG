@@ -20,12 +20,7 @@ export class RecruiterDashboardComponent  implements OnInit{
   //dashboard parameter
   @ViewChild(MatPaginator) private _paginator: MatPaginator;
 
-  page = {
-    filter: "MyExpertise", // Set the default value to "MyExpertise"
-    status: "",
-    type: ""
-    // sort: -1,
-  };
+
 
   jobsData: JobBasic[] | any;
 
@@ -45,20 +40,21 @@ export class RecruiterDashboardComponent  implements OnInit{
 
   ngOnInit(): void {
     
-    this.fetchAll()
+    this.getPostedJobs()
   }
 
-  fetchAll() {
-    this._jobsService.fetchAll(this.page).subscribe((response: JobBasicData) => {
-      // Get the users
-      this.jobsData = response.data || [];
-
-      // Assign it to data of table
-      this.data.data = this.jobsData;
-
-      // Mark for check
-      // this._changeDetectorRef.markForCheck();
-    });
+  getPostedJobs() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+      this._jobsService.getPostedJobs(currentUser._id).subscribe((response: JobBasicData[]) => {
+        this.jobsData = response || [];
+        this.data.data = this.jobsData;
+      },
+      (error) => {
+        console.error('Error fetching posted jobs:', error);
+        alert("Unable to fetch data");
+      });
+    }
   };
 
   /* fetchAllJobs(): any {
@@ -74,34 +70,17 @@ export class RecruiterDashboardComponent  implements OnInit{
     });
   } */
 
-  searchUser(event: any) {
-    
-    this.page.filter = event.target.value;
-    
-    this.fetchAll();
-  }
 
-  statusFilter(event: MatSelectChange): void {
-    const selectedValue = event.value; 
-  
-    // Now you can use the selectedValue as needed
-    this.page.status = selectedValue;
-    this.fetchAll();
-  }
 
-  typeFilter(event: MatSelectChange): void {
-    const selectedValue = event.value; 
-  
-    // Now you can use the selectedValue as needed
-    this.page.type = selectedValue;
-    this.fetchAll();
-  }
+
+
+
 
   deleteFn(id: string): void {
     if (confirm("Are you sure to delete ?")) {
       this._jobsService.delete(id).subscribe(response => {
         this._toasterService.showToast('Deleted Successfully', '', 'success');
-        this.fetchAll();
+        this.getPostedJobs();
       });
     }
   };

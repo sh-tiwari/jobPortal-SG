@@ -29,7 +29,13 @@ password: String,
     type: String,
     default: 'active'
   },
-postedJobs:[]  
+postedJobs:[{
+  _id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Job'
+  },
+  postedDate: Date
+}]  
 },
 {
   timestamps:true,

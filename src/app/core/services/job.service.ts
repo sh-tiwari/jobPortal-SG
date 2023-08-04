@@ -45,8 +45,8 @@ export class JobsService {
   /**
    * Create user
    */
-  create(data: JobBasicData) {
-    return this._httpClient.post<JobBasic[]>(`${this.baseURL}/`, data);
+  create(id: string, data: JobBasicData) {
+    return this._httpClient.post<JobBasic[]>(`${this.baseURL}/${id}/create`, data);
   }
 
   /**
@@ -66,6 +66,10 @@ export class JobsService {
 
   applyForJob(jobId: string, candidateId: string): Observable<any> {
     return this._httpClient.post<any>(`${this.baseURL}/${jobId}/apply`, { candidateId });
+  }
+
+  getPostedJobs(recruiterId: string): Observable<JobBasicData[]> {
+    return this._httpClient.get<JobBasicData[]>(`${this.baseURL}/${recruiterId}/postedJobs`);
   }
   
   

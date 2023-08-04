@@ -5,14 +5,18 @@ const Job = require('../controller/job.controller');
 
 
 router.route('/')
-    .post( Job.create)
+    
     .get(Job.fetchAll);
 
+router.route('/:id/create')
+    .post( Job.create);
 router.route('/:id')
     //.get (Job._populate, Job.fetch)
     .put( Job._populate,Job.update)
     .delete( Job._populate, Job.delete);
 
 router.post('/:id/apply', Job.apply);
+
+router.get('/:id/postedJobs', Job.postedJobs);
 
 module.exports = router;

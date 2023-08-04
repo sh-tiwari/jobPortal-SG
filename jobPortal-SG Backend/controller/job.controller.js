@@ -1,5 +1,6 @@
 const JobStructure = require('../models/job');
 const CandidateStructure = require('../models/candidate');
+const RecruiterStructure = require('../models/recruiter');
 exports._populate = async (req, res, next) => {
     if (req.params.id) {
         const {
@@ -26,27 +27,29 @@ exports._populate = async (req, res, next) => {
 }
 
 exports.create = async (req, res, next) => {
-    const filter = req.body;
-    console.log(filter);
-
-
-    let newJob = new JobStructure(filter);
-
-    
-
+    const jobData = req.body;
+    console.log(jobData);
+  
     try {
-        const job = await newJob.save();
-        res.status(201).json({
-            isSuccess: true,
-            Job: job
-        });
-    } catch (err) {
-        console.log("error=>",err);
-        next(err);
+      // Create the job in the Job collection
+      const newJob = await JobStructure.create(jobData);
+  
+      // Assuming you have the recruiter ID in req.user.id, adjust it based on your authentication logic
+      const recruiterId = req.params.id;
+  
+      // Find the recruiter and update the postedJobs array
+      const recruiter = await RecruiterStructure.findById(recruiterId);
+      if (recruiter) {
+        recruiter.postedJobs.push({ _id: newJob._id, postedDate: new Date() });
+        await recruiter.save();
     }
 
-
-};
+      return res.json({ message: 'Job posted successfully' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  };
 
 exports.fetchAll = async (req, res, next) => {
     console.log("request",req.query);
@@ -154,7 +157,7 @@ exports.fetchAll = async (req, res, next) => {
 exports.update = async (req, res, next) => {
 
     let job = req.job;
-    let updatedJob = Object.assign(jobob, req.body);    
+    let updatedJob = Object.assign(job, req.body);    
 
     try{
         const savedUser = await updatedJob.save();
@@ -253,6 +256,30 @@ exports.apply = async (req, res) => {
       }
 
       return res.json({ message: 'Job applied successfully' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+
+  exports.postedJobs = async (req, res, next) => {
+    const recruiterId = req.params.id; // Assuming you are passing recruiter ID as a parameter
+  
+    try {
+      // Find the recruiter by ID
+      const recruiter = await RecruiterStructure.findById(recruiterId);
+  
+      if (!recruiter) {
+        return res.status(404).json({ error: 'Recruiter not found' });
+      }
+  
+      // Get the job IDs from the postedJobs array of the recruiter
+      const jobIds = recruiter.postedJobs.map(job => job._id);
+  
+      // Fetch the details of the jobs with the IDs from the postedJobs array
+      const postedJobs = await JobStructure.find({ _id: { $in: jobIds } });
+  
+      return res.json({ isSuccess: true, data: postedJobs });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: 'Internal server error' });

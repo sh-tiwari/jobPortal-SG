@@ -1,4 +1,5 @@
 const RecruiterStructure = require("../models/recruiter");
+const JobStructure = require('../models/job');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
@@ -101,28 +102,4 @@ exports.update = async (req, res, next) => {
 
 
 
-  exports.postedJobs = async (req, res, next) => {
-		const user = req.user;
-		let userId = user._id;
-		let filter = {}
-		filter['user._id'] = userId;
-		const [results, itemCount] = await Promise.all([
-			Job.find(filter).populate('user._id', 'name mobile email companyName location street city postcode country addressCoordinates').exec(),
-			Job.countDocuments(filter),
-		]);
-		const pageCount = Math.ceil(itemCount / req.query.limit);
-		const isSuccess = true;
-		try {
-			res.status(200).json({
-				object: 'list',
-				page: {
-					totalPages: pageCount,
-					totalElements: itemCount,
-				},
-				data: results,
-				isSuccess
-			});
-		} catch (err) {
-			next(err);
-		}
-	}
+  
