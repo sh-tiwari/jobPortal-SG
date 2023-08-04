@@ -4,7 +4,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CandidateBasic, CandidatesBasicData } from 'src/app/core/models/candidate.model';
-import { JobBasic, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
+import { Job, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
 import { CandidateService } from 'src/app/core/services/candidate.service';
 import { JobsService } from 'src/app/core/services/job.service';
 import { ToastService } from 'src/app/shared/toast.service';
@@ -23,7 +23,7 @@ export class CandidatesComponent {
     // sort: -1,
   };
 
-  jobsData: JobBasic[] | any;
+  jobsData: Job[] | any;
 
   jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary', 'action'];
   data: MatTableDataSource<any> = new MatTableDataSource();

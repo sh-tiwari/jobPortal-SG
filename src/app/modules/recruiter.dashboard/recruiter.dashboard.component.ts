@@ -6,7 +6,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { JobBasic, JobBasicData } from 'src/app/core/models/job.model';
+import { Job, JobBasicData } from 'src/app/core/models/job.model';
 import { JobsService } from 'src/app/core/services/job.service';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -19,10 +19,10 @@ export class RecruiterDashboardComponent  implements OnInit{
   
   //dashboard parameter
   @ViewChild(MatPaginator) private _paginator: MatPaginator;
+  
 
 
-
-  jobsData: JobBasic[] | any;
+  jobsData: Job[] | any;
 
   jobsListTableColumns: string[] = [ 'jobTitle','salary','status', 'action'];
   data: MatTableDataSource<any> = new MatTableDataSource();
@@ -46,9 +46,11 @@ export class RecruiterDashboardComponent  implements OnInit{
   getPostedJobs() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
-      this._jobsService.getPostedJobs(currentUser._id).subscribe((response: JobBasicData[]) => {
-        this.jobsData = response || [];
-        this.data.data = this.jobsData;
+      this._jobsService.getPostedJobs(currentUser._id).subscribe((response: Job[]) => {
+        this.jobsData = response;
+        console.log(this.jobsData.data);
+        this.data.data = this.jobsData.data;
+        console.log(this.data.data);
       },
       (error) => {
         console.error('Error fetching posted jobs:', error);
@@ -110,6 +112,11 @@ export class RecruiterDashboardComponent  implements OnInit{
     }
   }
   
+
+  
+  
+
+
 }
 
 

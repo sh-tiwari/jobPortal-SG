@@ -4,7 +4,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CompaniesBasicData, CompanyBasic } from 'src/app/core/models/campany.model';
-import { JobBasic, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
+import { Job, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
 import { CompanyBasicService } from 'src/app/core/services/company.service';
 import { JobsService } from 'src/app/core/services/job.service';
 import { ToastService } from 'src/app/shared/toast.service';

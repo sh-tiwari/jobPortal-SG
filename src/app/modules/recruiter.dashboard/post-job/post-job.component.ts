@@ -22,9 +22,12 @@ export class PostJobComponent implements OnInit {
 
 
   ngOnInit(): void {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.recruiterId = currentUser._id;
+    console.log(this.recruiterId);
     this.jobForm = this._formBuilder.group({
       jobTitle:['',Validators.required],
-      companyName:[''],
+      companyName:[currentUser.companyName],
       jobType:['',Validators.required],
       description:[''],
       workingHours:[''],
@@ -33,9 +36,6 @@ export class PostJobComponent implements OnInit {
       city:[''],
       postcode:['']
     });
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.recruiterId = currentUser._id;
-    console.log(this.recruiterId);
   }
 
   onSubmit(){

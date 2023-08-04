@@ -3,7 +3,7 @@ import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { JobBasic, JobBasicData, JobBasicDatas } from '../models/job.model';
+import { Job, JobBasicData, JobBasicDatas } from '../models/job.model';
 import { CompaniesBasicData, CompanyBasic, CompanyBasicData } from '../models/campany.model';
 
 @Injectable({

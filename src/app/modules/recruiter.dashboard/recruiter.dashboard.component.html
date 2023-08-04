@@ -127,86 +127,46 @@
 </div>
 
 <div class="row mt-3">
-    <div class="col-md-12">
-      <div class="text-main">Recent Published Jobs</div>
-    </div>
-    <div align-items-center >
-      <div>
-          <div class="card-body card">
-              <!-- <div class="row">
-                  <div class="col-md-5 search-bar">
-                      <mat-form-field class="search-form d-flex align-items-center">
-                          <input class="search-input" matInput [autocomplete]="'off'" [placeholder]="'Search job or company'" (keyup)="searchUser($event)" >
-                      </mat-form-field>
-                  </div>
-                  <div class="col-md-3">
-                    <mat-form-field>
-                      <mat-label>Status</mat-label>
-                      <mat-select (selectionChange)="statusFilter($event)" [value]="">
-                        <mat-option value="">All</mat-option>
-                        <mat-option value="open">Open</mat-option>
-                        <mat-option value="closed">Closed</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-3">
-                    <mat-form-field>
-                      <mat-label>Job Type</mat-label>
-                      <mat-select (selectionChange)="typeFilter($event)" [value]="">
-                        <mat-option value="">All</mat-option>
-                        <mat-option value="part-time">Part-Time</mat-option>
-                        <mat-option value="full-time">Full-Time</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-              </div> -->
-              <table class="w-full  table  table-hover  col-lg-12" mat-table matSort [dataSource]="data" [trackBy]="trackByFn" >
+  <div class="col-md-12">
+    <div class="text-main">Recent Published Jobs</div>
+  </div>
+  <div align-items-center>
+    <div>
+      <div class="card-body card">
+        <table class="w-full table table-hover col-lg-12" mat-table matSort [dataSource]="data" [trackBy]="trackByFn">
           <ng-container matColumnDef="jobTitle">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </th>
-            <td mat-cell *matCellDef="let job"> <span class="pr-6 whitespace-nowrap">{{job.jobTitle}}</span>
-            </td>
+            <td mat-cell *matCellDef="let job"> <span class="pr-6 whitespace-nowrap">{{job.jobTitle}}</span> </td>
           </ng-container>
           <ng-container matColumnDef="salary">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
-            <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.salary}}</span></td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary </th>
+            <td mat-cell *matCellDef="let job"> <span class="pr-6 whitespace-nowrap">{{job.salary}}</span> </td>
           </ng-container>
-          <ng-container matColumnDef="companyName">
+          <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-            <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.status}}</span> </td>
+            <td mat-cell *matCellDef="let job"> <span class="pr-6 whitespace-nowrap">{{job.status}}</span> </td>
           </ng-container>
-  
-            <ng-container matColumnDef="status">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-              <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.status}}</span> </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-              <td mat-cell *matCellDef="let job" class="text-center">
-                <div class="d-flex align-items-center">
-                  <button class="btn btn-light-blue me-2" [routerLink]="['edit', job._id]" data-bs-toggle="tooltip"
-                          data-bs-placement="bottom" title="Edit">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-            
-                  <button class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"  (click)="deleteFn(job._id)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-              </td>
-            </ng-container>
-            
-            
-            
-            
-            
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let job" class="text-center">
+              <div class="d-flex align-items-center">
+                <button class="btn btn-light-blue me-2" [routerLink]="['edit', job._id]" data-bs-toggle="tooltip"
+                  data-bs-placement="bottom" title="Edit">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-button mat-raised-button color="primary">Close</button>
+              </div>
+            </td>
+          </ng-container>
           <tr mat-header-row *matHeaderRowDef="jobsListTableColumns"></tr>
           <tr class="stock-row h-16" mat-row *matRowDef="let row; columns: jobsListTableColumns;"></tr>
         </table>
-        <mat-paginator [pageSize]="5" [showFirstLastButtons]="true">
-        </mat-paginator>
-          </div>
+        <mat-paginator [pageSize]="5" [showFirstLastButtons]="true"></mat-paginator>
       </div>
-  </div>
+    </div>
   </div>
 </div>
+
+</div>
+
+

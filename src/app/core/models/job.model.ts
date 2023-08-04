@@ -1,29 +1,20 @@
-/**
- * @model this file job for model
- */
-export interface JobBasic {
+export interface Job {
   _id: string;
-  jobID?: string;
   jobTitle?: string;
   companyName?: string;
   jobType?: string;
-  schedule?: string;
-  workTime?: string;
-  jobSkills?: string[]; // Change [] to string[]
+  workingHours?: string;
+  jobSkills?: string[];
   experience?: string;
   salary?: string;
   description?: string;
   location?: string;
-  street?: string;
   city?: string;
   postcode?: string;
   country?: string;
-  addressCoordinates: {
-    latitude?: number; // Change Number to number
-    longitude?: number; // Change Number to number
-  };
-  user: {
-    _id?: string;
+  addressCoordinates?: {
+    latitude?: number;
+    longitude?: number;
   };
   status: string;
   applicants: Array<{
@@ -32,21 +23,19 @@ export interface JobBasic {
   }>;
 }
 
+
 export interface JobBasicData {
-  error: string;
+  error?: string;
   message: string;
-  data?: JobBasic;
+  data?: Job;
 }
 
+
 export interface JobBasicDatas {
-  page: any;
-  error: string;
+  page?: any;
+  error?: string;
   message: string;
-  data?: JobBasic[];
-  // page?: {
-  //   page: number,
-  //   limit: number,
-  //   totalPages: number,
-  //   totalElements: number
-  // };
+  data?: Job[];
 }
+
+

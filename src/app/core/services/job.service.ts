@@ -3,7 +3,7 @@ import { environment } from '../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { JobBasic, JobBasicData, JobBasicDatas } from '../models/job.model';
+import { Job, JobBasicData, JobBasicDatas } from '../models/job.model';
 //import { UserBasic, UserBasicData, UsersBasicData } from '../models/user-basic.model';
 
 @Injectable({
@@ -46,21 +46,21 @@ export class JobsService {
    * Create user
    */
   create(id: string, data: JobBasicData) {
-    return this._httpClient.post<JobBasic[]>(`${this.baseURL}/${id}/create`, data);
+    return this._httpClient.post<Job[]>(`${this.baseURL}/${id}/create`, data);
   }
 
   /**
  * Delete job
  */
   delete(id: string) {
-    return this._httpClient.delete<JobBasic[]>(`${this.baseURL}/${id}`);
+    return this._httpClient.delete<Job[]>(`${this.baseURL}/${id}`);
   }
 
   /**
    * Update user
    */
-  update(id: string, userData: JobBasic) {
-    return this._httpClient.put<JobBasic[]>(`${this.baseURL}/${id}`, userData);
+  update(id: string, userData: Job) {
+    return this._httpClient.put<Job[]>(`${this.baseURL}/${id}`, userData);
   }
 
 
@@ -68,8 +68,8 @@ export class JobsService {
     return this._httpClient.post<any>(`${this.baseURL}/${jobId}/apply`, { candidateId });
   }
 
-  getPostedJobs(recruiterId: string): Observable<JobBasicData[]> {
-    return this._httpClient.get<JobBasicData[]>(`${this.baseURL}/${recruiterId}/postedJobs`);
+  getPostedJobs(recruiterId: string): Observable<Job[]> {
+    return this._httpClient.get<Job[]>(`${this.baseURL}/${recruiterId}/postedJobs`);
   }
   
   
