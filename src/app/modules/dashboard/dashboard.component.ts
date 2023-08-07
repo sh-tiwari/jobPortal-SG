@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CandidateBasic } from 'src/app/core/models/candidate.model';
 
 
 @Component({
@@ -43,7 +44,10 @@ export class DashboardComponent {
   ){}
 
   ngOnInit(): void {
-    this.fetchAll()
+
+    this.fetchAll();
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log("current user :",currentUser);
   }
 
   ngAfterViewInit() {
@@ -61,15 +65,32 @@ export class DashboardComponent {
   }
 
   fetchAll() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._jobsService.fetchAll(this.page).subscribe((response: JobBasicData) => {
+      console.log("response data",response);
       // Get the users
       this.jobsData = response.data || [];
-
+      console.log("jobData",this.jobsData.data);
       // Assign it to data of table
       this.data.data = this.jobsData;
+      
+      
+      
+      for (let i=0;i<this.data.data.length;i++){
+        for (let j = 0;j<this.data.data[i].applicants.length; j++){
+          //console.log(i,j);
+          if (this.data.data[i].applicants[j]._id == currentUser._id){
+            console.log("job is applied by ",this.data.data[i].applicants[j]);
+            let isJobApplied = true;
+          } 
+        }
+      }
+      console.log(this.jobsData.filterdata);
+      this.isJobApplied(this.jobsData.filterdata);
 
       // Mark for check
       this._changeDetectorRef.markForCheck();
+
     });
   };
 
@@ -80,7 +101,7 @@ export class DashboardComponent {
 
       // Assign it to data of table
       this.data.data = this.jobsData;
-
+      
       // Mark for check
       this._changeDetectorRef.markForCheck();
     });
@@ -107,6 +128,55 @@ export class DashboardComponent {
     // Now you can use the selectedValue as needed
     this.page.type = selectedValue;
     this.fetchAll();
+  }
+
+  // Function to check if the job ID is applied
+  isJobApplied(data:any): any{
+    let isApplied=false;
+
+    console.log("applied job data",data._id)
+    const currentUser:CandidateBasic = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('current user in applied job==>',currentUser);
+    
+    // for (let i=0;i<currentUser.appliedJobs;i++){
+    //   if (currentUser.appliedJobs[i]._id == data._id){
+    //     console.log("data found",data);
+    //     isApplied=true;
+    //   }
+
+        
+    //   }
+    // return isApplied; 
+    let job=currentUser.appliedJobs.find(job=>job._id==data._id)
+    console.log('found==>',job);
+    if(job){
+      return true
+    }else {
+      return false
+    }
+
+    
+
+    }
+  
+
+  applyToJob(jobId){
+    /* if (this.isJobApplied()) {
+      // Job is already applied, do nothing or show a message
+      return;
+    } */
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    console.log("candidate=>",currentUser._id,"is applying for",jobId," job");
+    if(currentUser){
+      this._jobsService.applyForJob(jobId,`${currentUser._id}`).subscribe((response : any)=>{
+        console.log(response);
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
+        alert("Are You Sure?")
+        this.showSnackBar('Job Applied Successful');
+      })
+    }
+
   }
 
   deleteFn(id: string): void {

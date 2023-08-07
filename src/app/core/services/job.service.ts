@@ -65,7 +65,7 @@ export class JobsService {
 
 
   applyForJob(jobId: string, candidateId: string): Observable<any> {
-    return this._httpClient.post<any>(`${this.baseURL}/${jobId}/apply`, { candidateId });
+    return this._httpClient.post<any>(`${this.baseURL}/${jobId}/apply`, {candidateId });
   }
 
   getPostedJobs(recruiterId: string): Observable<Job[]> {

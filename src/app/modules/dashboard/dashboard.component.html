@@ -204,8 +204,8 @@
                 more
               </button>
 
-              <button class="btn btn-red" mat-raised-button data-bs-toggle="tooltip" data-bs-placement="bottom" title="Apply To Job" style="background-color: rgb(57, 197, 252);"
-                >Apply</button>
+              <button class="btn btn-red" mat-raised-button data-bs-toggle="tooltip" data-bs-placement="bottom" title="Apply To Job" style="background-color: rgb(57, 197, 252);" [disabled]="isJobApplied(job)"
+              (click)="applyToJob(job._id)">{{ isJobApplied(job) ? 'Applied' : 'Apply' }}</button>
             </span>
           </td>
         </ng-container>
