@@ -7,12 +7,14 @@ import { RecruiterDashboardComponent } from '../recruiter.dashboard/recruiter.da
 import { AngularMaterialModule } from './angular-material.module';
 import { PostJobComponent } from './post-job/post-job.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApplicantsComponent } from './applicants/applicants.component';
 
 @NgModule({
     declarations: [
    
     RecruiterDashboardComponent,
-    PostJobComponent
+    PostJobComponent,
+    ApplicantsComponent
      
      
     ],

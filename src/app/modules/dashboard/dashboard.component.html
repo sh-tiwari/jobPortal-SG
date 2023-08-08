@@ -33,7 +33,7 @@
             <a class="nav-link" href="#">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Find Jobs</a>
+            <a class="nav-link" href="/dashboard#jobList">Find Jobs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Prepare</a>
@@ -46,7 +46,7 @@
       <!-- Right elements -->
       <div class="d-flex align-items-center">
         <!-- Icon -->
-        
+        <button class="m-2" mat-raised-button color="warn" [routerLink]="['applied-jobs']">Applied jobs</button>
   
         <!-- Notifications -->
         <div class="dropdown">
@@ -117,12 +117,12 @@
   </nav>
   <!-- Navbar -->
 </div>
-<section class="find_jobs">
+<section class="find_jobs" id="findJobs">
   <form class="row domain-search bg-pblue">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h2 class="form-title">Find Your <strong>Dream Domain</strong></h2>
+                <h2 class="form-title">Find Your <strong>Dream Job</strong></h2>
                 <p>Search for your dream domain now</p>
             </div>
             <div class="col-md-9">
@@ -136,7 +136,7 @@
     </div>
 </form>
 </section>
-<section class="job">
+<section class="job" id="jobList">
   <div align-items-center >
     <div>
         <div class="card-body card">

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Job, JobBasicData, JobBasicDatas } from '../models/job.model';
+import { CandidateBasic } from '../models/candidate.model';
 //import { UserBasic, UserBasicData, UsersBasicData } from '../models/user-basic.model';
 
 @Injectable({
@@ -72,8 +73,13 @@ export class JobsService {
     return this._httpClient.get<Job[]>(`${this.baseURL}/${recruiterId}/postedJobs`);
   }
   
+  getApplicants(jobID:string): Observable<CandidateBasic[]>{
+    return this._httpClient.get<CandidateBasic[]>(`${this.baseURL}/applicants/${jobID}`);
+  }
   
 }
+
+
 
 
 export { JobBasicDatas };

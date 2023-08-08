@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoute } from './dashboard.routing';
 import { AngularMaterialModule } from './angular-material.module';
+import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 
 
 @NgModule({
     declarations: [
       DashboardComponent,
+      AppliedJobsComponent
     ],
    
     imports: [

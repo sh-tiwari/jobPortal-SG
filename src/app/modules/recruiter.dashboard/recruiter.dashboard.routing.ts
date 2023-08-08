@@ -1,6 +1,7 @@
 import { Route, RouterModule } from "@angular/router";
 import { RecruiterDashboardComponent } from "./recruiter.dashboard.component";
 import { PostJobComponent } from "./post-job/post-job.component";
+import { ApplicantsComponent } from "./applicants/applicants.component";
 
 
 export const RecruiterDashboardRoute: Route[] = [
@@ -14,6 +15,10 @@ export const RecruiterDashboardRoute: Route[] = [
             {
                 path:'post-job',
                 component:PostJobComponent
+            },
+            {
+                path:'applicants/:jobId',
+                component:ApplicantsComponent
             }
         ]
         

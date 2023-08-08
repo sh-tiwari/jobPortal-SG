@@ -26,6 +26,7 @@ export class RecruiterSignupComponent implements OnInit {
   ngOnInit(): void {
       this.recruiterSignup= this.form.group({
         companyName:['',Validators.required],
+        recruiterName:['',Validators.required],
         designation:['',Validators.required],
         email:['',[Validators.required,Validators.email]],
         password:['',Validators.required]

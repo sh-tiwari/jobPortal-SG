@@ -154,7 +154,8 @@
                   data-bs-placement="bottom" title="Edit">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-button mat-raised-button color="primary">Close</button>
+                <button mat-button mat-raised-button color="primary" [routerLink]="['applicants', job._id]">Applicants</button>
+                <button mat-button mat-raised-button color="warn">close</button>
               </div>
             </td>
           </ng-container>

@@ -161,10 +161,7 @@ export class DashboardComponent {
   
 
   applyToJob(jobId){
-    /* if (this.isJobApplied()) {
-      // Job is already applied, do nothing or show a message
-      return;
-    } */
+    if (confirm("Are you sure ?")) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     console.log("candidate=>",currentUser._id,"is applying for",jobId," job");
@@ -172,12 +169,12 @@ export class DashboardComponent {
       this._jobsService.applyForJob(jobId,`${currentUser._id}`).subscribe((response : any)=>{
         console.log(response);
         localStorage.setItem('currentUser', JSON.stringify(response.user));
-        alert("Are You Sure?")
         this.showSnackBar('Job Applied Successful');
       })
     }
 
   }
+}
 
   deleteFn(id: string): void {
     if (confirm("Are you sure to delete ?")) {

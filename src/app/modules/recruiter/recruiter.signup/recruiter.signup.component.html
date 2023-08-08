@@ -7,12 +7,15 @@
       <div class="form-group">
         <label for="company name"><b>Company Name</b></label>
         <input type="text" placeholder="e.g. Amazon or MyExpertise" formControlName="companyName">
-        <mat-error *ngIf="recruiterSignup.get('companyName').hasError('required') && recruiterSignup.get('name').touched">Field is required</mat-error>
+        <mat-error *ngIf="recruiterSignup.get('companyName').hasError('required') && recruiterSignup.get('companyName').touched">Field is required</mat-error>
 
+        <label for="company name"><b>Your Name</b></label>
+        <input type="text" placeholder="e.g. Michael or Abhisekh" formControlName="recruiterName">
+        <mat-error *ngIf="recruiterSignup.get('recruiterName').hasError('required') && recruiterSignup.get('recruiterName').touched">Field is required</mat-error>
 
         <label for="designation"><b>Your Designation</b></label>
         <input type="text" placeholder="e.g. Talent Acquisition Specialist" formControlName="designation">
-        <mat-error *ngIf="recruiterSignup.get('designation').hasError('required') && recruiterSignup.get('name').touched">Field is required</mat-error>
+        <mat-error *ngIf="recruiterSignup.get('designation').hasError('required') && recruiterSignup.get('designation').touched">Field is required</mat-error>
         
         <label for="email"><b>Email</b></label>
         <input type="text" placeholder="Your company email" formControlName="email">

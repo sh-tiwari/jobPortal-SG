@@ -3,6 +3,7 @@ export interface CompanyBasic {
   profileImageURL:string;
   profileImageDest: string;
   companyName:string;
+  recruiterName:string;
   mobile: String,
   companyWebsite:String,
   email:string; 

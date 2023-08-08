@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const RecruiterSchema = new Schema({
 companyName:String,
+recruiterName:String,
 mobile:String,
 designation:String,
 email: {

@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <H1>List of applicants</H1>
+    </div>
+    <div class="col-md-10">
+      <mat-table [dataSource]="dataSource" matSort>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+          <mat-cell *matCellDef="let applicant">{{ applicant.name }}</mat-cell>
+        </ng-container>
+      
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+          <mat-cell *matCellDef="let applicant">{{ applicant.email }}</mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="mobile">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+          <mat-cell *matCellDef="let applicant">{{ applicant.mobile }}</mat-cell>
+        </ng-container>
+      
+      
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let job" class="text-center">
+            <div class="d-flex align-items-center">
+              <button mat-raised-button class="btn btn-light-blue me-2" [routerLink]="" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" title="more">more
+                <!-- <mat-icon>more</mat-icon> -->
+              </button>
+              <button mat-button mat-raised-button color="primary" [routerLink]="">Reject</button>
+            </div>
+          </td>
+        </ng-container>
+      
+      
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>      
+    </div>
+  </div>
+</div>

@@ -288,3 +288,41 @@ exports.apply = async (req, res) => {
       return res.status(500).json({ error: 'Internal server error' });
     }
   };
+
+
+//get Applicants list
+
+exports.getApplicants = async (req, res) => {
+  try {
+    const Id = req.params.Id;
+
+    console.log(Id)
+;
+    // Find the job by its ID
+    const job = await JobStructure.findById(Id).exec();
+    console.log(job);
+
+    if (!job) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    // Get the list of candidate IDs who have applied for the job
+    const candidateIds = job.applicants.map((applicants) => applicants._id);
+
+    console.log(candidateIds);
+    // Find candidates based on the candidateIds array
+    const applicants = await CandidateStructure.find({ _id: { $in: candidateIds } }).exec();
+
+    console.log(applicants);
+
+    res.json({
+      isSuccess: true,
+      data: applicants,
+    });
+  } catch (error) {
+    console.error("Error fetching job applicants:", error);
+
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
