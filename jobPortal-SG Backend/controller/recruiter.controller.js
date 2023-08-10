@@ -14,7 +14,7 @@ exports._populate = async (req, res, next) => {
         try {
             const recruiter = await RecruiterStructure.findById(id).exec();
 
-            if (!job) {
+            if (!recruiter) {
                 const err = new Error('Recruiter not found.');
                 err.status = 404;
                 return next(err);

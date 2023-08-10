@@ -28,28 +28,28 @@
                   </div>
             </div>
             <table class="w-full  table  table-hover  col-lg-12" mat-table matSort [dataSource]="data" [trackBy]="trackByFn" >
-        <ng-container matColumnDef="jobTitle">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Title </th>
-          <td mat-cell *matCellDef="let job"> <span class="pr-6 whitespace-nowrap">{{job.jobTitle}}</span>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let candidate"> <span class="pr-6 whitespace-nowrap">{{candidate.name}}</span>
           </td>
         </ng-container>
-        <ng-container matColumnDef="companyName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
-          <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.companyName}}</span> </td>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let candidate"><span class="pr-6 whitespace-nowrap">{{candidate.email}}</span> </td>
         </ng-container>
-        <ng-container matColumnDef="salary">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
-            <td mat-cell *matCellDef="let job"><span class="pr-6 whitespace-nowrap">{{job.salary}}</span></td>
+        <ng-container matColumnDef="mobile">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</th>
+            <td mat-cell *matCellDef="let candidate"><span class="pr-6 whitespace-nowrap">{{candidate.mobile}}</span></td>
           </ng-container>
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-          <td mat-cell *matCellDef="let job">
+          <td mat-cell *matCellDef="let candidate">
             <span class='icon'>
 
-              <button class="btn  btn-light-blue" [routerLink]="['edit', job._id]" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" title="Edit">
-                <i class="bi bi-pencil-fill"></i>
+              <button class="btn  btn-light-blue" mat-raised-button [routerLink]="['more', candidate._id]" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" title="More" color="warn">
+                more
               </button>
 
               <button class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"
@@ -57,8 +57,8 @@
             </span>
           </td>
         </ng-container>
-        <tr mat-header-row *matHeaderRowDef="jobsListTableColumns"></tr>
-        <tr class="stock-row h-16" mat-row *matRowDef="let row; columns: jobsListTableColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="candidatesListTableColumns"></tr>
+        <tr class="stock-row h-16" mat-row *matRowDef="let row; columns: candidatesListTableColumns;"></tr>
       </table>
       <mat-paginator [pageSize]="5" [showFirstLastButtons]="true">
       </mat-paginator>

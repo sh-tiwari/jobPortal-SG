@@ -9,9 +9,9 @@ import { CompaniesBasicData, CompanyBasic, CompanyBasicData } from '../models/ca
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyBasicService {
+export class CompanyService {
   sidebar: boolean = true;
-  private baseURL = `${environment.apiUrl}/recriter`;
+  private baseURL = `${environment.apiUrl}/recruiter`;
 
   constructor(private _httpClient: HttpClient) { }
 

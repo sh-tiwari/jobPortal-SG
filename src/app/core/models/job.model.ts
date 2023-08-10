@@ -1,3 +1,4 @@
+import { CompanyBasic } from '../models/campany.model'
 export interface Job {
   _id: string;
   jobTitle?: string;
@@ -21,6 +22,7 @@ export interface Job {
     _id?: string;
     appliedDate?: Date;
   }>;
+  recruiter:CompanyBasic;
 }
 
 

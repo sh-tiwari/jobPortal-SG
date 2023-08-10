@@ -11,7 +11,10 @@ router.route('/')
 router.route('/:id')
     .get (Candidate._populate, Candidate.fetch)
     .put( Candidate._populate,Candidate.update)
-    .delete( Candidate._populate, Candidate.delete); 
+    .delete( Candidate._populate, Candidate.delete);
+    
+
+router.get('/:id/appliedJobs', Candidate.appliedJobs);
 
 
 module.exports = router;

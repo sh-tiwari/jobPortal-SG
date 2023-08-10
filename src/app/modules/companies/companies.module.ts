@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 //import { SharedModule } from 'src/app/shared/shared.module';
 import { CompaniesComponent } from './companies.component';
 import { CompaniesRoute } from './companies.routing';
+import { AngularMaterialModule } from './angular-material.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CompaniesRoute } from './companies.routing';
      // AlertModule.forRoot(),
       ReactiveFormsModule,    
       RouterModule.forChild(CompaniesRoute),
+      AngularMaterialModule
     ]
   
 })

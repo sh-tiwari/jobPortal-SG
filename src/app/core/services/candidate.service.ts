@@ -11,7 +11,7 @@ import {  JobBasicDatas } from '../models/job.model';
 })
 export class CandidateService {
   sidebar: boolean = true;
-  private baseURL = 'http://localhost:8081/api/candidates';
+  private baseURL = 'http://localhost:8081/api/candidate';
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -74,7 +74,7 @@ export class CandidateService {
   * Fetch Applied Jobs
   */
   fetchAppliedJobs(id: string): Observable<JobBasicDatas> {
-    return this._httpClient.get<JobBasicDatas>(`${this.baseURL}/applied-job/${id}`);
+    return this._httpClient.get<JobBasicDatas>(`${this.baseURL}/${id}/appliedJobs`);
   }
 
   /**

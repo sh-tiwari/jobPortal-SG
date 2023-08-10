@@ -8,7 +8,7 @@ router.route('/')
     
     .get(Job.fetchAll);
 
-router.route('/:id/create')
+router.route('/create')
     .post( Job.create);
 router.route('/:id')
     //.get (Job._populate, Job.fetch)

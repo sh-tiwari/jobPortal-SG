@@ -46,8 +46,8 @@ export class JobsService {
   /**
    * Create user
    */
-  create(id: string, data: JobBasicData) {
-    return this._httpClient.post<Job[]>(`${this.baseURL}/${id}/create`, data);
+  create( data: JobBasicData) {
+    return this._httpClient.post<Job[]>(`${this.baseURL}/create`, data);
   }
 
   /**

@@ -14,16 +14,15 @@ const JobSchema = new Schema({
   location: String,
   city:String,
   postCode:String,
+  what:String,
   country: String,
   addressCoordinates: {
     latitude: Number,
     longitude: Number
   }, 
-  user: {
-    _id: {
+  recruiter: {
       type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
+      ref: 'recruiter'
   },
   status: {
     type: String,

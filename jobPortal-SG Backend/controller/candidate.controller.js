@@ -1,4 +1,5 @@
 const CandidateStructure = require('../models/candidate');
+const JobStructure = require('../models/job');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
@@ -213,5 +214,29 @@ exports.delete = async (req, res, next) => {
       
   } catch (err) {
       next(err);
+  }
+};
+
+exports.appliedJobs = async (req, res, next) => {
+  const candidateId = req.params.id; // Assuming you are passing candidate ID as a parameter
+
+  try {
+    // Find the candidate by ID
+    const candidate = await CandidateStructure.findById(candidateId);
+
+    if (!candidate) {
+      return res.status(404).json({ error: 'Candidate not found' });
+    }
+
+    // Get the job IDs from the postedJobs array of the recruiter
+    const jobIds = candidate.appliedJobs.map(job => job._id);
+
+    // Fetch the details of the jobs with the IDs from the postedJobs array
+    const appliedJobs = await JobStructure.find({ _id: { $in: jobIds } });
+
+    return res.json({ isSuccess: true, data: appliedJobs });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };

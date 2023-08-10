@@ -34,7 +34,8 @@ export class PostJobComponent implements OnInit {
       experience:['',Validators.required],
       salary:['',Validators.required],
       city:[''],
-      postcode:['']
+      postcode:[''],
+      recruiter:['']
     });
   }
 
@@ -43,9 +44,13 @@ export class PostJobComponent implements OnInit {
       return
     }
     this.jobForm.disable();
+
+    this.jobForm.patchValue({
+      recruiter: this.recruiterId
+  });
     console.log(this.jobForm.value);
 
-    this._jobService.create(this.recruiterId,this.jobForm.value).subscribe(
+    this._jobService.create(this.jobForm.value).subscribe(
       ()=>{
         this.jobForm.enable();
         this.jobForm.reset();

@@ -23,13 +23,13 @@ export class CandidatesComponent {
     // sort: -1,
   };
 
-  jobsData: Job[] | any;
+  candidatesData: CandidateBasic[] | any;
 
-  jobsListTableColumns: string[] = [ 'jobTitle', 'companyName','salary', 'action'];
+  candidatesListTableColumns: string[] = [ 'name', 'email','mobile', 'action'];
   data: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(
-    private _jobsService: JobsService,
+    private _candidateService: CandidateService,
     private _changeDetectorRef: ChangeDetectorRef,
     private _toasterService: ToastService
 
@@ -54,19 +54,19 @@ export class CandidatesComponent {
   }
 
   fetchAll() {
-    this._jobsService.fetchAll(this.page).subscribe((response: JobBasicData) => {
+    this._candidateService.fetchAll(this.page).subscribe((response) => {
       // Get the users
-      this.jobsData = response.data || [];
+      this.candidatesData = response.data || [];
 
       // Assign it to data of table
-      this.data.data = this.jobsData;
+      this.data.data = this.candidatesData;
 
       // Mark for check
       this._changeDetectorRef.markForCheck();
     });
   };
 
-  fetchAllJobs(): any {
+  /* fetchAllJobs(): any {
     this._jobsService.fetchAllJobs().subscribe((response: JobBasicDatas) => {
       // Get the users
       this.jobsData = response.data || [];
@@ -77,7 +77,7 @@ export class CandidatesComponent {
       // Mark for check
       this._changeDetectorRef.markForCheck();
     });
-  }
+  } */
 
   searchUser(event: any) {
     this.page.filter = event.target.value;
@@ -89,14 +89,14 @@ export class CandidatesComponent {
     this.fetchAll();
   }
 
-  deleteFn(id: string): void {
+  /* deleteFn(id: string): void {
     if (confirm("Are you sure to delete ?")) {
       this._jobsService.delete(id).subscribe(response => {
         this._toasterService.showToast('Deleted Successfully', '', 'success');
         this.fetchAll();
       });
     }
-  };
+  }; */
 
   trackByFn(index: number, item: any): any {
     return item._id || index;
