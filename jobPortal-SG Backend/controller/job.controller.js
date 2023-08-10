@@ -27,29 +27,31 @@ exports._populate = async (req, res, next) => {
 }
 
 exports.create = async (req, res, next) => {
-    const jobData = req.body;
-    console.log(jobData);
-  
-    try {
-      // Create the job in the Job collection
-      const newJob = await JobStructure.create(jobData);
-  
-      // Assuming you have the recruiter ID in req.user.id, adjust it based on your authentication logic
-      const recruiterId = req.params.id;
-  
-      // Find the recruiter and update the postedJobs array
-      const recruiter = await RecruiterStructure.findById(recruiterId);
-      if (recruiter) {
-        recruiter.postedJobs.push({ _id: newJob._id, postedDate: new Date() });
-        await recruiter.save();
-    }
+  const filter = req.body;
+  console.log(filter);
+  const jobData = new ActivityLog({
+    userId: employeeId,
+    action: useAction,
+    timestamp: new Date(),
+  });
+  let newJob = new JobStructure(filter);
 
-      return res.json({ message: 'Job posted successfully' });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Internal server error' });
-    }
-  };
+  console.log("new job",newJob);
+
+  try {
+      const job = await newJob.save();
+      res.status(201).json({
+          isSuccess: true,
+          Job: job
+      });
+  } catch (err) {
+      console.log("error=>",err);
+      next(err);
+  }
+
+
+};
+
 
 exports.fetchAll = async (req, res, next) => {
     console.log("request",req.query);

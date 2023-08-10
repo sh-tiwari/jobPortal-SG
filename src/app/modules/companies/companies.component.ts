@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CompaniesBasicData, CompanyBasic } from 'src/app/core/models/campany.model';
 import { Job, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
-import { CompanyBasicService } from 'src/app/core/services/company.service';
+import { CompanyService } from 'src/app/core/services/company.service';
 import { JobsService } from 'src/app/core/services/job.service';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -18,7 +18,7 @@ export class CompaniesComponent implements OnInit{
   @ViewChild(MatPaginator) private _paginator: MatPaginator;
   @ViewChild(MatSort) private _sort: MatSort;
   
-  companyBasic!: CompanyBasic[] | any;
+  companyData: CompanyBasic[] | any;
   /**
    * here columns of table are declared
   */
@@ -28,13 +28,15 @@ export class CompaniesComponent implements OnInit{
     // sort: -1,
   };
 
-  data: MatTableDataSource<CompanyBasic> = new MatTableDataSource<CompanyBasic>();
+  
 
   // Define the column names here
-  companyListTableColumns: string[] = ['companyTitle', 'mobile', 'email', 'location', 'isBlocked', 'action'];
-  
+  companyListTableColumns: string[] = ['companyName', 'companyWebsite', 'city', 'action'];
+  data: MatTableDataSource<any> = new MatTableDataSource();
+
+
   constructor(
-    private _userBasicService: CompanyBasicService,
+    private _companyService: CompanyService,
     private _changeDetectorRef: ChangeDetectorRef,
     private _toasterService: ToastService
   ) { }
@@ -68,13 +70,13 @@ export class CompaniesComponent implements OnInit{
    * @fetchall this function is used to fetch all data
   */
   fetchAll() {
-    this._userBasicService.fetchAll(this.page).subscribe((response: CompaniesBasicData) => {
+    this._companyService.fetchAll(this.page).subscribe((response: CompaniesBasicData) => {
       // Get the users
-      this.companyBasic = response.data || [];
-
+      this.companyData = response.data || [];
+      console.log("company Data",this.companyData)
       // Assign it to data of table
-      this.data.data = this.companyBasic;
-
+      this.data.data = this.companyData;
+      console.log("data.data",this.data)
       // Mark for check
       this._changeDetectorRef.markForCheck();
     });
@@ -94,7 +96,7 @@ export class CompaniesComponent implements OnInit{
   */
   deleteFn(id: string): void {
     if (confirm("Are you sure to delete ?")) {
-      this._userBasicService.delete(id).subscribe(response => {
+      this._companyService.delete(id).subscribe(response => {
         this._toasterService.showToast('Deleted Successfully', '', 'success');
         this.fetchAll();
       });
