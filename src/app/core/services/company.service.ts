@@ -68,7 +68,10 @@ export class CompanyService {
    */
   postedJobs(id: string): Observable<JobBasicDatas> {
     return this._httpClient.get<JobBasicDatas>(`${this.baseURL}/posted-job/${id}`);
-  }  
+  } 
+  getPostedJobs(recruiterId: string): Observable<Job[]> {
+    return this._httpClient.get<Job[]>(`${this.baseURL}/${recruiterId}/postedJobs`);
+  } 
 
   /**
   * Fetch Applied Jobs

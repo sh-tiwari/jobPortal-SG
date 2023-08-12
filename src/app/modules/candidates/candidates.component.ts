@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
@@ -7,6 +8,7 @@ import { CandidateBasic, CandidatesBasicData } from 'src/app/core/models/candida
 import { Job, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
 import { CandidateService } from 'src/app/core/services/candidate.service';
 import { JobsService } from 'src/app/core/services/job.service';
+import { MoreDailogueBoxComponent } from 'src/app/shared/more-dailogue-box/more-dailogue-box.component';
 import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
@@ -31,13 +33,30 @@ export class CandidatesComponent {
   constructor(
     private _candidateService: CandidateService,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _toasterService: ToastService
+    private _toasterService: ToastService,
+    private dialog: MatDialog
 
   ){}
 
   ngOnInit(): void {
     this.fetchAll()
   }
+
+
+  openMoreDialog(candidate: CandidateBasic) {
+    console.log("candidate",candidate)
+    const dialogRef = this.dialog.open(MoreDailogueBoxComponent, {
+      width: '400px', // Adjust the width as needed
+      data: candidate
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle any dialog close actions if needed
+    });
+  }
+
+
+
 
   ngAfterViewInit() {
     setTimeout(() => {

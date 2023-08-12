@@ -1,1 +1,5 @@
-<p>welcome-dialog works!</p>
+<mat-dialog-content class="dialog-content">
+  <h1>Hello {{ currentUser.name }}</h1>
+  <p>welcome to Dashboard!</p>
+  <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-content>

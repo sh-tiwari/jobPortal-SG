@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const RecruiterSchema = new Schema({
 companyName:String,
+companyWebsite:String,
 recruiterName:String,
 mobile:String,
 designation:String,
@@ -25,6 +26,10 @@ email: {
       message: '{VALUE} is not a valid email.',
     },
 },
+location:String,
+city:String,
+country:String,
+postcode:String,
 password: String,
   status: {
     type: String,

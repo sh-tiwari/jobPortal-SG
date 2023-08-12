@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of, switchMap, throwError } from 'rxjs';
+import { Observable, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { AuthUtils } from './auth.utils';
 
@@ -157,8 +157,9 @@ recSignIn(credentials: { email: string; password: string }): Observable<any> {
 }
 
 // recruiter register
-recRegister(userData: {
+/* recRegister(userData: {
   companyName: string;
+  recruiterName:string;
   designation:string;
   email: string;
   password: string;
@@ -175,6 +176,35 @@ recRegister(userData: {
 
       // Re-throw the error to be handled by the component
       return throwError(error);
+    })
+  );
+} */
+
+
+recRegister(userData: {
+  companyName: string;
+  recruiterName: string;
+  designation: string;
+  email: string;
+  password: string;
+}): Observable<any> {
+  return this._httpClient.post(`${this.baseURL}/auth/recruiter-register`, userData).pipe(
+    catchError((error) => {
+      console.log('Registration error:', error);
+      return throwError(error);
+    }),
+    tap((response: any) => {
+      if (response.success) {
+        // Store the access token in the local storage
+        this.accessToken = response.token;
+
+        // Set the authenticated flag to true
+        this._authenticated = true;
+
+        // Store the user and role in local storage
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
+        localStorage.setItem('role', JSON.stringify(response.role));
+      }
     })
   );
 }

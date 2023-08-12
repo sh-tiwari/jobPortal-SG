@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Job, JobBasicData } from 'src/app/core/models/job.model';
+import { CompanyService } from 'src/app/core/services/company.service';
 import { JobsService } from 'src/app/core/services/job.service';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -29,6 +30,7 @@ export class RecruiterDashboardComponent  implements OnInit{
   
 
   constructor(
+    private _companyService: CompanyService,
     private _jobsService: JobsService,
     private _changeDetectorRef: ChangeDetectorRef,
     private _toasterService: ToastService,
@@ -46,7 +48,7 @@ export class RecruiterDashboardComponent  implements OnInit{
   getPostedJobs() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
-      this._jobsService.getPostedJobs(currentUser._id).subscribe((response: Job[]) => {
+      this._companyService.getPostedJobs(currentUser._id).subscribe((response: Job[]) => {
         this.jobsData = response;
         console.log(this.jobsData.data);
         this.data.data = this.jobsData.data;
@@ -72,8 +74,25 @@ export class RecruiterDashboardComponent  implements OnInit{
     });
   } */
 
+  onclose(id: string,job:Job) {
+    if (confirm("Are you sure, You want to close the application of this job? This process is irreversible!")){
+      this._jobsService.close(id,job).subscribe((response)=>{
+        console.log("closed job",response);
+      });
+    }
+  }
 
+  // Function to check if the job status is closed
+  isJobClosed(data: any): any {
+    let isClosed = false;
 
+    // Assuming the job status is stored in the 'status' property of the data object
+    if (data.status === 'closed') {
+        isClosed = true;
+    }
+
+    return isClosed;
+  }
 
 
 

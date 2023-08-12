@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
-import {  Router, RouterLinkActive } from '@angular/router';
+import {  ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -18,7 +18,9 @@ export class RecruiterSignupComponent implements OnInit {
     private form :FormBuilder,
     private _router: Router,
     private _authService :AuthService,
-    private _toasterService :ToastService
+    private _toasterService :ToastService,
+    private _activatedRoute:ActivatedRoute
+
 
 
   ){}
@@ -60,7 +62,10 @@ export class RecruiterSignupComponent implements OnInit {
 
         // Show success message
         this._toasterService.showToast('Registration Successful', '', 'success');
-        this._router.navigateByUrl('recruiter');
+        const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-recruiter-redirect';
+
+          // Navigate to the redirect url
+          this._router.navigateByUrl(redirectURL);
       },
       (response) => {
         // Re-enable the form

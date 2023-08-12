@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
@@ -7,6 +8,7 @@ import { CompaniesBasicData, CompanyBasic } from 'src/app/core/models/campany.mo
 import { Job, JobBasicData, JobBasicDatas } from 'src/app/core/models/job.model';
 import { CompanyService } from 'src/app/core/services/company.service';
 import { JobsService } from 'src/app/core/services/job.service';
+import { MoreDailogueBoxComponent } from 'src/app/shared/more-dailogue-box/more-dailogue-box.component';
 import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
@@ -38,7 +40,8 @@ export class CompaniesComponent implements OnInit{
   constructor(
     private _companyService: CompanyService,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _toasterService: ToastService
+    private _toasterService: ToastService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -81,6 +84,20 @@ export class CompaniesComponent implements OnInit{
       this._changeDetectorRef.markForCheck();
     });
   };
+
+  openMoreDialog(company: CompanyBasic) {
+    console.log("company",company)
+    const dialogRef = this.dialog.open(MoreDailogueBoxComponent, {
+      width: '400px', // Adjust the width as needed
+      data: company
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle any dialog close actions if needed
+    });
+  }
+
+
 
   /**
    * Search filter for user

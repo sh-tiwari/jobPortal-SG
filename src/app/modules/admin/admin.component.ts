@@ -42,7 +42,6 @@ export class AdminComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(WelcomeDialogComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

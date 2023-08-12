@@ -29,11 +29,11 @@ exports._populate = async (req, res, next) => {
 exports.create = async (req, res, next) => {
   const filter = req.body;
   console.log(filter);
-  const jobData = new ActivityLog({
+  /* const jobData = new ActivityLog({
     userId: employeeId,
     action: useAction,
     timestamp: new Date(),
-  });
+  }); */
   let newJob = new JobStructure(filter);
 
   console.log("new job",newJob);
@@ -267,7 +267,7 @@ exports.apply = async (req, res) => {
     }
   };
 
-  exports.postedJobs = async (req, res, next) => {
+  /* exports.postedJobs = async (req, res, next) => {
     const recruiterId = req.params.id; // Assuming you are passing recruiter ID as a parameter
   
     try {
@@ -289,7 +289,7 @@ exports.apply = async (req, res) => {
       console.error(error);
       return res.status(500).json({ error: 'Internal server error' });
     }
-  };
+  }; */
 
 
 //get Applicants list

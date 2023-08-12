@@ -14,6 +14,6 @@ router.route('/:id')
     .put( Recruiter._populate,Recruiter.update)
     .delete(Recruiter._populate,Recruiter.delete); 
 
-
+router.get('/:id/postedJobs', Recruiter.postedJobs);
 
 module.exports = router;

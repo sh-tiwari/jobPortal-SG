@@ -47,8 +47,13 @@
           <td mat-cell *matCellDef="let candidate">
             <span class='icon'>
 
-              <button class="btn  btn-light-blue" mat-raised-button [routerLink]="['more', candidate._id]" data-bs-toggle="tooltip"
+              <!-- <button class="btn  btn-light-blue" mat-raised-button [routerLink]="['more', candidate._id]" data-bs-toggle="tooltip"
                 data-bs-placement="bottom" title="More" color="warn">
+                more
+              </button> -->
+
+              <button class="btn  btn-light-blue" mat-raised-button (click)="openMoreDialog(candidate)"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="More" color="warn">
                 more
               </button>
 

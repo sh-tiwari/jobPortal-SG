@@ -14,10 +14,9 @@
         Post a Job
       </button>
       <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
       </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" [routerLink]="['/recruiter-dashboard/profile']">
+        <mat-icon>account_circle</mat-icon>
       </button>
       <button mat-icon-button (click)="logOut()" class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>exit_to_app</mat-icon>
@@ -155,7 +154,7 @@
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-button mat-raised-button color="primary" [routerLink]="['applicants', job._id]">Applicants</button>
-                <button mat-button mat-raised-button color="warn">close</button>
+                <button mat-button mat-raised-button color="warn" [disabled]="isJobClosed(job)" (click)="onclose(job._id,job)">{{ isJobClosed(job) ? 'Closed' : 'Close' }}</button>
               </div>
             </td>
           </ng-container>

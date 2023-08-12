@@ -1,0 +1,10 @@
+/* Add styling to the dialog content */
+.dialog-content {
+  padding: 20px; /* Add some padding */
+  text-align: center;
+}
+
+/* Increase the size of the dialog */
+.mat-dialog-container {
+  max-width: 500px; /* Adjust the max-width to your preference */
+}

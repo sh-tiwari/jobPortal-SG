@@ -100,6 +100,18 @@ exports.update = async (req, res, next) => {
     }
   };
 
-
+  exports.postedJobs = async (req, res, next) => {
+    const recruiterId = req.params.id; // Assuming you are passing recruiter ID as a parameter
+  
+    try {
+        // Find the jobs where the recruiter's ID matches the job.recruiter field
+        const postedJobs = await JobStructure.find({ recruiter: recruiterId });
+  
+        return res.json({ isSuccess: true, data: postedJobs });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+};
 
   

@@ -17,7 +17,7 @@ router.route('/:id')
 
 router.post('/:id/apply', Job.apply);
 
-router.get('/:id/postedJobs', Job.postedJobs);
+//router.get('/:id/postedJobs', Job.postedJobs);
 
 router.get("/applicants/:Id", Job.getApplicants);
 

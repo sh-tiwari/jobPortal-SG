@@ -13,6 +13,7 @@ import { AuthService } from './core/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MoreDailogueBoxComponent } from './shared/more-dailogue-box/more-dailogue-box.component';
 
 
 
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    MoreDailogueBoxComponent
 
     
     

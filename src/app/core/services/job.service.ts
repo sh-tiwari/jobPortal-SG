@@ -60,8 +60,8 @@ export class JobsService {
   /**
    * Update user
    */
-  update(id: string, userData: Job) {
-    return this._httpClient.put<Job[]>(`${this.baseURL}/${id}`, userData);
+  update(id: string, updates: Job) {
+    return this._httpClient.put<Job[]>(`${this.baseURL}/${id}`, updates);
   }
 
 
@@ -69,12 +69,18 @@ export class JobsService {
     return this._httpClient.post<any>(`${this.baseURL}/${jobId}/apply`, {candidateId });
   }
 
-  getPostedJobs(recruiterId: string): Observable<Job[]> {
-    return this._httpClient.get<Job[]>(`${this.baseURL}/${recruiterId}/postedJobs`);
-  }
+ 
   
   getApplicants(jobID:string): Observable<CandidateBasic[]>{
     return this._httpClient.get<CandidateBasic[]>(`${this.baseURL}/applicants/${jobID}`);
+  }
+
+  close(id: string, jobData: Job): Observable<Job[]> {
+    // Update the status to "closed" in the userData
+    jobData.status = 'closed';
+
+    // Send the updated userData to the server
+    return this._httpClient.put<Job[]>(`${this.baseURL}/${id}`, jobData);
   }
   
 }
